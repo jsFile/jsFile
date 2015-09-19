@@ -1,5 +1,3 @@
-import $ from './../../dom/index';
-
 export default function (element = {}) {
     const {children, style} = element;
     let i = children ? children.length : 0;

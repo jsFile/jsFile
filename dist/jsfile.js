@@ -91,13 +91,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _documentIndex2 = _interopRequireDefault(_documentIndex);
 
-	var _engineIndex = __webpack_require__(14);
+	var _engineIndex = __webpack_require__(13);
 
 	var _engineIndex2 = _interopRequireDefault(_engineIndex);
-
-	var _domIndex = __webpack_require__(13);
-
-	var _domIndex2 = _interopRequireDefault(_domIndex);
 
 	var _isSupported = __webpack_require__(6);
 
@@ -150,10 +146,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, {
 	        key: 'Document',
 	        value: _documentIndex2['default'],
-	        enumerable: true
-	    }, {
-	        key: 'dom',
-	        value: _domIndex2['default'],
 
 	        /**
 	         *
@@ -670,10 +662,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _srcSetProperties2 = _interopRequireDefault(_srcSetProperties);
 
-	var _domIndex = __webpack_require__(13);
-
-	var _domIndex2 = _interopRequireDefault(_domIndex);
-
 	var _utilsMerge = __webpack_require__(3);
 
 	var _utilsMerge2 = _interopRequireDefault(_utilsMerge);
@@ -865,52 +853,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 13 */
-/***/ function(module, exports) {
-
-	/**
-	 * @namespace $
-	 * @type {*}
-	 */
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-	exports["default"] = Object.defineProperties({}, {
-	    children: {
-	        /**
-	         * @params element {Object}
-	         * @return {Array}
-	         */
-	        value: function value(element) {
-	            if (!element) {
-	                return [];
-	            }
-
-	            if (element.children) {
-	                return Array.prototype.slice.call(element.children, 0);
-	            }
-
-	            var result = [];
-	            var child = element.firstChild;
-
-	            while (child) {
-	                //it is an element
-	                if (child.nodeType === 1) {
-	                    result.push(child);
-	                }
-
-	                child = child.nextSibling;
-	            }
-
-	            return result;
-	        }
-	    }
-	});
-	module.exports = exports["default"];
-
-/***/ },
-/* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -930,55 +872,55 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
-	var _srcNormalizeDataUri = __webpack_require__(15);
+	var _srcNormalizeDataUri = __webpack_require__(14);
 
 	var _srcNormalizeDataUri2 = _interopRequireDefault(_srcNormalizeDataUri);
 
-	var _srcValidateFile = __webpack_require__(16);
+	var _srcValidateFile = __webpack_require__(15);
 
 	var _srcValidateFile2 = _interopRequireDefault(_srcValidateFile);
 
-	var _srcCropUnit = __webpack_require__(17);
+	var _srcCropUnit = __webpack_require__(16);
 
 	var _srcCropUnit2 = _interopRequireDefault(_srcCropUnit);
 
-	var _srcReadFileEntry = __webpack_require__(18);
+	var _srcReadFileEntry = __webpack_require__(17);
 
 	var _srcReadFileEntry2 = _interopRequireDefault(_srcReadFileEntry);
 
-	var _srcReadSingleFile = __webpack_require__(20);
+	var _srcReadSingleFile = __webpack_require__(19);
 
 	var _srcReadSingleFile2 = _interopRequireDefault(_srcReadSingleFile);
 
-	var _srcNormalizeColorValue = __webpack_require__(21);
+	var _srcNormalizeColorValue = __webpack_require__(20);
 
 	var _srcNormalizeColorValue2 = _interopRequireDefault(_srcNormalizeColorValue);
 
-	var _srcNormalizeDate = __webpack_require__(23);
+	var _srcNormalizeDate = __webpack_require__(22);
 
 	var _srcNormalizeDate2 = _interopRequireDefault(_srcNormalizeDate);
 
-	var _srcAttributeToBoolean = __webpack_require__(24);
+	var _srcAttributeToBoolean = __webpack_require__(23);
 
 	var _srcAttributeToBoolean2 = _interopRequireDefault(_srcAttributeToBoolean);
 
-	var _srcFormatPropertyName = __webpack_require__(25);
+	var _srcFormatPropertyName = __webpack_require__(24);
 
 	var _srcFormatPropertyName2 = _interopRequireDefault(_srcFormatPropertyName);
 
-	var _srcReadArchive = __webpack_require__(26);
+	var _srcReadArchive = __webpack_require__(25);
 
 	var _srcReadArchive2 = _interopRequireDefault(_srcReadArchive);
 
-	var _srcColorsList = __webpack_require__(22);
+	var _srcColorsList = __webpack_require__(21);
 
 	var _srcColorsList2 = _interopRequireDefault(_srcColorsList);
 
-	var _srcValidateUrl = __webpack_require__(30);
+	var _srcValidateUrl = __webpack_require__(29);
 
 	var _srcValidateUrl2 = _interopRequireDefault(_srcValidateUrl);
 
-	var _srcGetMaxFontSize = __webpack_require__(31);
+	var _srcGetMaxFontSize = __webpack_require__(30);
 
 	var _srcGetMaxFontSize2 = _interopRequireDefault(_srcGetMaxFontSize);
 
@@ -986,7 +928,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _utilsErrors2 = _interopRequireDefault(_utilsErrors);
 
-	var _utilsClone = __webpack_require__(32);
+	var _utilsClone = __webpack_require__(31);
 
 	var _utilsClone2 = _interopRequireDefault(_utilsClone);
 
@@ -1130,7 +1072,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 15 */
+/* 14 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -1163,7 +1105,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 16 */
+/* 15 */
 /***/ function(module, exports) {
 
 	/**
@@ -1218,7 +1160,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 17 */
+/* 16 */
 /***/ function(module, exports) {
 
 	/**
@@ -1241,7 +1183,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 18 */
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1255,7 +1197,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _utilsErrors = __webpack_require__(5);
 
-	var _taskIndex = __webpack_require__(19);
+	var _taskIndex = __webpack_require__(18);
 
 	var _taskIndex2 = _interopRequireDefault(_taskIndex);
 
@@ -1284,7 +1226,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 19 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1373,7 +1315,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 20 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1416,7 +1358,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 21 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1428,7 +1370,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _colorsList = __webpack_require__(22);
+	var _colorsList = __webpack_require__(21);
 
 	var _colorsList2 = _interopRequireDefault(_colorsList);
 
@@ -1464,7 +1406,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 22 */
+/* 21 */
 /***/ function(module, exports) {
 
 	/**
@@ -1626,7 +1568,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 23 */
+/* 22 */
 /***/ function(module, exports) {
 
 	/**
@@ -1659,7 +1601,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 24 */
+/* 23 */
 /***/ function(module, exports) {
 
 	/**
@@ -1684,7 +1626,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 25 */
+/* 24 */
 /***/ function(module, exports) {
 
 	/**
@@ -1719,7 +1661,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 26 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1733,7 +1675,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _utilsErrors = __webpack_require__(5);
 
-	var _zipIndex = __webpack_require__(27);
+	var _zipIndex = __webpack_require__(26);
 
 	var _zipIndex2 = _interopRequireDefault(_zipIndex);
 
@@ -1767,7 +1709,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 27 */
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1779,11 +1721,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _srcZip = __webpack_require__(28);
+	var _srcZip = __webpack_require__(27);
 
 	var _srcZip2 = _interopRequireDefault(_srcZip);
 
-	var _srcEntry = __webpack_require__(29);
+	var _srcEntry = __webpack_require__(28);
 
 	var _srcEntry2 = _interopRequireDefault(_srcEntry);
 
@@ -1882,7 +1824,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 28 */
+/* 27 */
 /***/ function(module, exports) {
 
 	/*
@@ -2678,7 +2620,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports["default"];
 
 /***/ },
-/* 29 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2694,7 +2636,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
-	var _zip = __webpack_require__(28);
+	var _zip = __webpack_require__(27);
 
 	var Entry = (function () {
 	    function Entry(options) {
@@ -2771,7 +2713,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 30 */
+/* 29 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -2788,23 +2730,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports["default"];
 
 /***/ },
-/* 31 */
-/***/ function(module, exports, __webpack_require__) {
+/* 30 */
+/***/ function(module, exports) {
 
-	'use strict';
+	"use strict";
 
-	Object.defineProperty(exports, '__esModule', {
+	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	// istanbul ignore next
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-	var _domIndex = __webpack_require__(13);
-
-	var _domIndex2 = _interopRequireDefault(_domIndex);
-
-	exports['default'] = function () {
+	exports["default"] = function () {
 	    var element = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 	    var children = element.children;
 	    var style = element.style;
@@ -2821,10 +2756,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    return fontSize;
 	};
 
-	module.exports = exports['default'];
+	module.exports = exports["default"];
 
 /***/ },
-/* 32 */
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';

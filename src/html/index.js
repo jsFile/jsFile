@@ -2,7 +2,6 @@ import buildElement from './src/buildElement';
 import buildPageNumber from './src/buildPageNumber';
 import setStyles from './src/setStyles';
 import setProperties from './src/setProperties';
-import $ from './../dom/index';
 import merge from './../utils/merge';
 
 class Html {

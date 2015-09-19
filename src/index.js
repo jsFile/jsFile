@@ -4,7 +4,6 @@ import merge from './utils/merge';
 import read from './read';
 import Document from './document/index';
 import Engine from './engine/index';
-import dom from './dom/index';
 import isSupported from './isSupported';
 
 const documentEngines = [];
@@ -45,8 +44,6 @@ class JsFile {
     static Engine = Engine
 
     static Document = Document
-
-    static dom = dom
 
     /**
      *
