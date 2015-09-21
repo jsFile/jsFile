@@ -1,5 +1,6 @@
-import Html from './../html/index';
+import Html from './src/html/index';
 import merge from './../utils/merge';
+import clone from './../utils/merge';
 
 /**
  * @param attrs
@@ -12,7 +13,8 @@ class Document {
         this._data = merge({
             name: '',
             language: '',
-            pages: []
+            content: [],
+            styles: []
         }, attrs);
 
         if (isNaN(zoom) || zoom < 0 || zoom > 100) {
@@ -32,15 +34,21 @@ class Document {
     html (options) {
         let html = new Html(options);
 
-        return html.buildDocument(this._data.pages);
+        return html.buildDocument(
+            this._data.content,
+            this._data.styles
+        );
     }
 
     json () {
-        return this._data.pages.slice(0);
+        return {
+            content: clone(this._data.content),
+            styles: clone(this._data.styles)
+        };
     }
 
     page (index) {
-        return this._data.pages[index];
+        return this._data.content[index];
     }
 }
 
@@ -98,7 +106,7 @@ Object.defineProperties(Document.prototype, {
      */
     length: {
         get: function () {
-            return this._data.pages.length;
+            return this._data.content.length;
         }
     },
 
@@ -116,7 +124,7 @@ Object.defineProperties(Document.prototype, {
      */
     isEmpty: {
         get: function () {
-            return !(this._data.pages && this._data.pages[0]);
+            return !(this._data.content && this._data.content[0]);
         }
     }
 });

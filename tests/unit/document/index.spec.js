@@ -23,20 +23,20 @@ describe('Document', function () {
 
     describe('isEmpty', function () {
         it('should return true if document has no pages', function () {
-            assert.isTrue(new Document({pages: []}).isEmpty);
+            assert.isTrue(new Document({content: []}).isEmpty);
             assert.isTrue(new Document().isEmpty);
         });
 
         it('should return false if document has 1 or more pages', function () {
-            assert.isFalse(new Document({pages: [{}]}).isEmpty);
-            assert.isFalse(new Document({pages: [{}, {}]}).isEmpty);
+            assert.isFalse(new Document({content: [{}]}).isEmpty);
+            assert.isFalse(new Document({content: [{}, {}]}).isEmpty);
         });
     });
 
     describe('length', function () {
         it('should return count of document pages', function () {
-            expect(new Document({pages: []}).length).to.equal(0);
-            expect(new Document({pages: [{}]}).length).to.equal(1);
+            expect(new Document({content: []}).length).to.equal(0);
+            expect(new Document({content: [{}]}).length).to.equal(1);
             expect(new Document().length).to.equal(0);
         });
     });
@@ -68,21 +68,23 @@ describe('Document', function () {
     describe('#html()', function () {
         it('should documentFragment with built pages', function () {
             expect(new Document().html()).to.instanceof(DocumentFragment);
-            expect(new Document({
-                pages: [
+            const html = new Document({
+                content: [
                     {}
                 ]
-            }).html().children.length).to.equal(1);
+            }).html();
+            assert.equal(html.children.length, 2, 'content & styles');
         });
     });
 
     describe('#json()', function () {
         it('should documentFragment with built pages', function () {
-            expect(new Document({
-                pages: [
+            const json = new Document({
+                content: [
                     {}
                 ]
-            }).json().length).to.equal(1);
+            }).json();
+            expect(json.content.length).to.equal(1);
         });
     });
 });

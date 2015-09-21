@@ -1,8 +1,9 @@
 import buildElement from './src/buildElement';
 import buildPageNumber from './src/buildPageNumber';
+import buildStyle from './src/buildStyle';
 import setStyles from './src/setStyles';
 import setProperties from './src/setProperties';
-import merge from './../utils/merge';
+import merge from './../../../utils/merge';
 
 class Html {
     constructor (options) {
@@ -17,25 +18,26 @@ class Html {
 
     buildElement = buildElement
 
-    buildDocument (pages) {
+    buildDocument (content, styles) {
         let doc = document.createDocumentFragment();
 
-        if (!Array.isArray(pages)) {
+        if (!Array.isArray(content) || !Array.isArray(styles)) {
             return doc;
         }
 
         const pageClassName = this.options.pageClassName;
-        pages.forEach(function (page) {
-            let pageEl = this.buildElement(page);
-            pageEl.classList.add(pageClassName);
+        content.forEach(function (page) {
+            let el = this.buildElement(page);
+            el.classList.add(pageClassName);
 
             if (page.properties && page.properties.pageNumber) {
-                buildPageNumber(pageEl, page);
+                buildPageNumber(el, page);
             }
 
-            doc.appendChild(pageEl);
+            doc.appendChild(el);
         }, this);
 
+        doc.appendChild(buildStyle(styles));
         return doc;
     }
 }
