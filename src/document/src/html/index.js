@@ -37,7 +37,9 @@ class Html {
             doc.appendChild(el);
         }, this);
 
-        doc.appendChild(buildStyle(styles));
+        doc.appendChild(buildStyle(styles, {
+            pageClassName
+        }));
         return doc;
     }
 }
