@@ -1,4 +1,4 @@
-# jsFile 
+# JsFile 
 [![Build Status](https://secure.travis-ci.org/jsFile/jsFile.png?branch=master)](https://travis-ci.org/jsFile/jsFile)
 [![npm](https://img.shields.io/npm/dm/jsfile.svg)](https://www.npmjs.com/package/jsfile)
 [![npm](https://img.shields.io/npm/l/jsfile.svg)](https://www.npmjs.com/package/jsfile)
@@ -19,7 +19,9 @@
   * [JsFile.Engine](#jsfileengine) 
    * [JsFile.Engine.Document](#jsfileenginedocument) 
 * [Creating custom engines](#creating-custom-engines)
-
+* [JsFile engines](#jsfile-engines)
+* [Roadmap](#roadmap)
+* [Help](#donate)
 
 
 ## Installation
@@ -244,7 +246,7 @@ $ npm run tests
 
 
 
-## jsFile engines
+## JsFile engines
 * [jsFile-ooxml](https://github.com/jsFile/jsFile-ooxml) for [Office Open XML](https://en.wikipedia.org/wiki/Office_Open_XML) format (.docx files, etc.)
 * [jsFile-odf](https://github.com/jsFile/jsFile-odf) for [OpenDocument](https://en.wikipedia.org/wiki/OpenDocument) format (.odf files, etc.)
 * [jsFile-rtf](https://github.com/jsFile/jsFile-rtf) for [Rich Text Format](https://en.wikipedia.org/wiki/Rich_Text_Format)  (.rtf files)
@@ -263,6 +265,7 @@ $ npm run tests
 - [ ] Improve performance of document parsing
 - [ ] Support .doc format
 - [ ] Add e2e tests
+- [ ] refactor zip engine
 
 ### New features
 - [ ] Support .xslx format
