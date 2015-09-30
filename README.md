@@ -7,7 +7,6 @@
 
 
 
-## Table of contents
 * [Installation](#installation)
  * [NPM](#via-npm)
  * [Git](#with-git)
