@@ -16,7 +16,7 @@
  * [Dependencies](#dependencies) 
  * [JsFile](#jsfile-1)
   * [JsFile.Engine](#jsfileengine) 
-   * [JsFile.Engine.Document](#jsfileenginedocument) 
+  * [JsFile.Document](#jsfiledocument) 
 * [Creating custom engines](#creating-custom-engines)
 * [JsFile engines](#jsfile-engines)
 * [Roadmap](#roadmap)
@@ -126,7 +126,7 @@ jf.read().then(
 
 `error` {[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)} - object contains description of the error in `error.message` property
 
-`document` - object contains result of file reading. For more details see [JsFile.Engine.Document](#jsfileenginedocument)
+`document` - object contains result of file reading. For more details see [JsFile.Document](#jsfiledocument)
 
 #### jf.findEngine()
 Returns [JsFile.Engine](#jsfileengine) or `null`. This method finds an engine that supports `file` type.
@@ -143,8 +143,8 @@ engine.validateUrl(url); // true or false
 ````
 `url {String}`
 
-##### JsFile.Engine.Document
-###### JsFile.Engine.Document.elementPrototype
+#### JsFile.Document
+##### JsFile.Document.elementPrototype
 Type: `Object`
 
 It's a static property that contains the base structure for each element of parsed document
@@ -162,59 +162,59 @@ It's a static property that contains the base structure for each element of pars
 }
 ````
 
-###### doc.html()
+##### doc.html()
 Returns [DocumentFragment](https://developer.mozilla.org/en/docs/Web/API/DocumentFragment) with document content presented as HTML
 ````js 
-const doc = new JsFile.Engine.Document(...);
+const doc = new JsFile.Document(...);
 doc.html();
 ````
 
-###### doc.json()
+##### doc.json()
 Returns simple JS `Object` with parsed document tree
 ````js 
-const doc = new JsFile.Engine.Document(...);
+const doc = new JsFile.Document(...);
 doc.json(); // {name: '', language: '', content: [...]}
 ````
 
-###### doc.page()
+##### doc.page()
 Returns parsed page by index
 ````js
-const doc = new JsFile.Engine.Document(...);
+const doc = new JsFile.Document(...);
 doc.page(0);
 ````
 
-###### doc.language
+##### doc.language
 Returns main language of parsed document
 ````js
-const doc = new JsFile.Engine.Document(...);
+const doc = new JsFile.Document(...);
 doc.language; // String
 ````
 
-###### doc.name
+##### doc.name
 Returns name of parsed document
 ````js
-const doc = new JsFile.Engine.Document(...);
+const doc = new JsFile.Document(...);
 doc.name; // String
 ````
 
-###### doc.wordsCount
+##### doc.wordsCount
 Returns number of words in parsed document
 ````js
-const doc = new JsFile.Engine.Document(...);
+const doc = new JsFile.Document(...);
 doc.wordsCount; // Number
 ````
 
-###### doc.length
+##### doc.length
 Returns number of pages in parsed document
 ````js
-const doc = new JsFile.Engine.Document(...);
+const doc = new JsFile.Document(...);
 doc.length; // Number
 ````
 
-###### doc.zoom
+##### doc.zoom
 Returns zoom value of parsed document
 ````js
-const doc = new JsFile.Engine.Document(...);
+const doc = new JsFile.Document(...);
 doc.zoom; // Number
 ````
 
@@ -222,7 +222,7 @@ doc.zoom; // Number
 Type: `Boolean`
 
 ````js
-const doc = new JsFile.Engine.Document(...);
+const doc = new JsFile.Document(...);
 doc.isEmpty; // Boolean
 ````
 
