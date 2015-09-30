@@ -253,7 +253,6 @@ $ npm run tests
 * [jsFile-dsv](https://github.com/jsFile/jsFile-dsv) for [Delimiter-separated values](https://en.wikipedia.org/wiki/FictionBook) format (.csv, .tsv files, etc.)
 * [jsFile-image](https://github.com/jsFile/jsFile-image) works with many image formats
 * [jsFile-txt](https://github.com/jsFile/jsFile-txt) process the file as a simple text
-* [jsFile-wcbff](https://github.com/jsFile/jsFile-wcbff) for [WCBFF](https://en.wikipedia.org/wiki/Compound_File_Binary_Format) format (.doc, etc.)
 * [jsFile-epub](https://github.com/jsFile/jsFile-epub) for [EPUB](https://en.wikipedia.org/wiki/EPUB) format (.doc, etc.)
 
 
