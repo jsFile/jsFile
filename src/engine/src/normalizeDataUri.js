@@ -2,7 +2,8 @@ const mimeTypesByExtension = {
     png: 'image/png',
     jpg: 'image/jpeg',
     jpeg: 'image/jpeg',
-    gif: 'image/gif'
+    gif: 'image/gif',
+    woff: 'application/font-woff'
 };
 
 /**
