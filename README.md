@@ -4,9 +4,26 @@
 [![npm](https://img.shields.io/npm/l/jsfile.svg)](https://www.npmjs.com/package/jsfile)
 > JavaScript library for working with files in browser
 
-## Getting started
-### Installation
-#### via NPM
+
+
+
+## Table of contents
+* [Installation](#installation)
+ * [NPM](#via-npm)
+ * [Git](#with-git)
+ * [Manual](#from-latest-version)
+* [Usage](#usage)
+* [API](#api)
+ * [Dependencies](#dependencies) 
+ * [JsFile](#jsfile)
+  * [JsFile.Engine](#jsfileengine) 
+   * [JsFile.Engine.Document](#jsfileenginedocument) 
+* [Creating custom engines](#creating-custom-engines)
+
+
+
+## Installation
+### via NPM
 
 You can install a <code>jsFile</code> package very easily using NPM. After
 installing NPM on your machine, simply run:
@@ -14,50 +31,54 @@ installing NPM on your machine, simply run:
 $ npm install jsfile
 ````
 
-#### with Git
+### with Git
 
 You can clone the whole repository with Git:
 ````
 $ git clone git://github.com/jsFile/jsFile.git
 ````
 
-#### from latest version
+### from latest version
 
 Also you can download [the latest release](https://github.com/jsFile/jsFile/releases/latest) of `jsFile` and include built files to your project.
 
-### Include jsFile to your project
+
+
+
+## Usage
 You can include jsFile to your project in different ways:
 
-##### as independent file from
+### as independent file from
 ````html
 <script src="path_to_js/dist/jsfile.js"></script>
 <script>
     window.JsFile; //use an object in global namespace
 </script>
 ````
-##### as CommonJS module
+### as CommonJS module
 ````js
 var JsFile = require('JsFile');
 ```` 
-##### as ES6 module
+### as ES6 module
 ````js
 import JsFile from 'JsFile';
 ````
 
-### Required technologies
+
+
+## API
+### Dependencies
 * [File](https://developer.mozilla.org/en/docs/Web/API/File)
 * [Blob](https://developer.mozilla.org/en/docs/Web/API/Blob)
 * [FileReader](https://developer.mozilla.org/en/docs/Web/API/FileReader)
 * [ArrayBuffer](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer)
 * [Uint8Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array)
 * [DataView](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView)
+* [zip.js](https://github.com/gildas-lormeau/zip.js) (see `src/zip/` folder)
 
-Also `jsFile` uses a powerful library [zip.js](https://github.com/gildas-lormeau/zip.js) (see `src/zip/` folder)
-
-### Documentation
-#### JsFile
-##### JsFile.isSupported
-`Boolean`
+### JsFile
+#### JsFile.isSupported
+Type: `Boolean`
 
 It's shows that `jsFile` can work in current browser or not.
 
@@ -65,15 +86,15 @@ It's shows that `jsFile` can work in current browser or not.
 JsFile.isSupported; //Boolean
 ````
 
-##### mimeTypes property
-`Array`
+#### JsFile.mimeTypes
+Type: `Array`
 
 Contains list of supported mime-type in jDoc engines.
 ````js
 JsFile.mimeTypes; //[...supported mime-types...]
 ````
 
-###### JsFile.defineEngine()
+#### JsFile.defineEngine()
 Returns [JsFile.Engine](#jsfileengine) object or `null` (if engine is invalid). 
 You can create your own documents engine for `jsFile` and include it to the library.
 ````js
@@ -93,7 +114,7 @@ let jf = new JsFile(file[, options]);
 `options {Object} [optional]` - object with your custom settings:
  * `workerPath {String}` - path to [Web Worker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API) files.
  
-##### read() method
+#### jf.read()
 Returns [Promise](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Promise) object
 ````js
 jf.read().then(
@@ -104,16 +125,16 @@ jf.read().then(
 
 `error` {[Error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)} - object contains description of the error in `error.message` property
 
-`document` - object contains result of file reading. For more details see [JsFile.Document](#document)
+`document` - object contains result of file reading. For more details see [JsFile.Engine.Document](#jsfileenginedocument)
 
-##### findEngine() method
+#### jf.findEngine()
 Returns [JsFile.Engine](#jsfileengine) or `null`. This method finds an engine that supports `file` type.
 ````js
 jf.findEngine()
 ````
 
-#### JsFile.Engine instance
-##### validateUrl() method
+#### JsFile.Engine
+##### JsFile.Engine.validateUrl()
 Returns `Boolean` value. It's utility method for URL validation. Might be helpful in development of custom engines 
 ````js
 let engine = new JsFile.defineEngine(...);
@@ -121,11 +142,11 @@ engine.validateUrl(url); // true or false
 ````
 `url {String}`
 
-#### JsFile.Document
-##### JsFile.Document.elementPrototype
-`Object`
+##### JsFile.Engine.Document
+###### JsFile.Engine.Document.elementPrototype
+Type: `Object`
 
-Static property. It contains base structure for each element in parsed [JsFile.Document](#document)
+It's a static property that contains the base structure for each element of parsed document
 ````js
 {
     "children": [],
@@ -140,69 +161,72 @@ Static property. It contains base structure for each element in parsed [JsFile.D
 }
 ````
 
-##### html() method
+###### doc.html()
 Returns [DocumentFragment](https://developer.mozilla.org/en/docs/Web/API/DocumentFragment) with document content presented as HTML
 ````js 
-let document = new JsFile.Document(...);
-document.html();
+const doc = new JsFile.Engine.Document(...);
+doc.html();
 ````
 
-##### json() method
+###### doc.json()
 Returns simple JS `Object` with parsed document tree
 ````js 
-let document = new JsFile.Document(...);
-document.json(); // {name: '', language: '', pages: [...]}
+const doc = new JsFile.Engine.Document(...);
+doc.json(); // {name: '', language: '', content: [...]}
 ````
 
-##### page() method
+###### doc.page()
 Returns parsed page by index
 ````js
-let document = new JsFile.Document(...);
-document.page(0);
+const doc = new JsFile.Engine.Document(...);
+doc.page(0);
 ````
 
-##### language property
+###### doc.language
 Returns main language of parsed document
 ````js
-let document = new JsFile.Document(...);
-document.language; // String
+const doc = new JsFile.Engine.Document(...);
+doc.language; // String
 ````
 
-##### name property
+###### doc.name
 Returns name of parsed document
 ````js
-let document = new JsFile.Document(...);
-document.name; // String
+const doc = new JsFile.Engine.Document(...);
+doc.name; // String
 ````
 
-##### wordsCount property
+###### doc.wordsCount
 Returns number of words in parsed document
 ````js
-let document = new JsFile.Document(...);
-document.wordsCount; // Number
+const doc = new JsFile.Engine.Document(...);
+doc.wordsCount; // Number
 ````
 
-##### length property
+###### doc.length
 Returns number of pages in parsed document
 ````js
-let document = new JsFile.Document(...);
-document.length; // Number
+const doc = new JsFile.Engine.Document(...);
+doc.length; // Number
 ````
 
-##### zoom property
+###### doc.zoom
 Returns zoom value of parsed document
 ````js
-let document = new JsFile.Document(...);
-document.zoom; // Number
+const doc = new JsFile.Engine.Document(...);
+doc.zoom; // Number
 ````
 
-##### isEmpty property
-`Boolean`
+##### doc.isEmpty
+Type: `Boolean`
 
 ````js
-let document = new JsFile.Document(...);
-document.isEmpty; // Boolean
+const doc = new JsFile.Engine.Document(...);
+doc.isEmpty; // Boolean
 ````
+
+
+
 
 ## Creating custom engines
 ### Running provided unit tests
@@ -214,8 +238,11 @@ $ npm install
 ````
 * Run tests task:
 ````
-$ grunt tests
+$ npm run tests
 ````
+
+
+
 
 ## jsFile engines
 * [jsFile-ooxml](https://github.com/jsFile/jsFile-ooxml) for [Office Open XML](https://en.wikipedia.org/wiki/Office_Open_XML) format (.docx files, etc.)
@@ -226,6 +253,11 @@ $ grunt tests
 * [jsFile-dsv](https://github.com/jsFile/jsFile-dsv) for [Delimiter-separated values](https://en.wikipedia.org/wiki/FictionBook) format (.csv, .tsv files, etc.)
 * [jsFile-image](https://github.com/jsFile/jsFile-image) works with many image formats
 * [jsFile-txt](https://github.com/jsFile/jsFile-txt) process the file as a simple text
+* [jsFile-wcbff](https://github.com/jsFile/jsFile-wcbff) for [WCBFF](https://en.wikipedia.org/wiki/Compound_File_Binary_Format) format (.doc, etc.)
+* [jsFile-epub](https://github.com/jsFile/jsFile-epub) for [EPUB](https://en.wikipedia.org/wiki/EPUB) format (.doc, etc.)
+
+
+
 
 ## Roadmap
 ### Ongoing work
@@ -239,13 +271,22 @@ $ grunt tests
 - [ ] Support .pdf
 - [ ] Support document editing and creation
 
+
+
+
 ## Related projects
 
  * `EasyDocs` extension for browsers:
     * [Chrome](https://chrome.google.com/webstore/detail/easydocs/ickghndjocahgacnfaakbmbokmfneahd)
 
-## Love campaign
+
+
+
+## Donate
 * [You may support jsFile project with any donations](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=9R3AKPR466K84)
+
+
+
 
 ## Release History
 
