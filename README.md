@@ -284,7 +284,7 @@ $ npm run tests
 
 
 ## Donate
-* [You may support jsFile project with any donations](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=9R3AKPR466K84)
+* [You may support the jsFile project by some donations](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=9R3AKPR466K84)
 
 
 
