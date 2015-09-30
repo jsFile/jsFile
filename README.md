@@ -15,7 +15,7 @@
 * [Usage](#usage)
 * [API](#api)
  * [Dependencies](#dependencies) 
- * [JsFile](#jsfile)
+ * [JsFile](#jsfile-1)
   * [JsFile.Engine](#jsfileengine) 
    * [JsFile.Engine.Document](#jsfileenginedocument) 
 * [Creating custom engines](#creating-custom-engines)
