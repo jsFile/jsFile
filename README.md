@@ -8,7 +8,7 @@
 
 
 * [Installation](#installation)
- * [NPM](#via-npm)
+ * [npm.js](#via-npm)
  * [Git](#with-git)
  * [Manual](#from-latest-version)
 * [Usage](#usage)
