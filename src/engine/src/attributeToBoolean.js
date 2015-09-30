@@ -8,5 +8,5 @@
 export default function (attribute) {
     let value = (attribute && attribute.value) || attribute;
 
-    return [true, 'true', 'on', '1', 1].indexOf(value) >= 0;
+    return [true, 'true', 'on', 'yes', '1', 1].indexOf(value) >= 0;
 }
