@@ -1,4 +1,4 @@
-# JsFile 
+# JsFile http://jsfile.github.io/jsFile/
 [![Build Status](https://secure.travis-ci.org/jsFile/jsFile.png?branch=master)](https://travis-ci.org/jsFile/jsFile)
 [![npm](https://img.shields.io/npm/dm/jsfile.svg)](https://www.npmjs.com/package/jsfile)
 [![npm](https://img.shields.io/npm/l/jsfile.svg)](https://www.npmjs.com/package/jsfile)
@@ -19,8 +19,9 @@
   * [JsFile.Document](#jsfiledocument) 
 * [Creating custom engines](#creating-custom-engines)
 * [JsFile engines](#jsfile-engines)
+* [Examples](http://jsfile.github.io/jsFile/)
 * [Roadmap](#roadmap)
-* [Help](#donate)
+* [Help](#help)
 
 
 ## Installation
