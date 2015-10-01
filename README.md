@@ -1,9 +1,8 @@
-# JsFile http://jsfile.github.io/jsFile/
+# JsFile
 [![Build Status](https://secure.travis-ci.org/jsFile/jsFile.png?branch=master)](https://travis-ci.org/jsFile/jsFile)
 [![npm](https://img.shields.io/npm/dm/jsfile.svg)](https://www.npmjs.com/package/jsfile)
 [![npm](https://img.shields.io/npm/l/jsfile.svg)](https://www.npmjs.com/package/jsfile)
-> JavaScript library for working with files in browser
-
+> JavaScript library for working with files in browser. See here more info https://jsfile.github.io/jsFile/
 
 
 
@@ -19,7 +18,7 @@
   * [JsFile.Document](#jsfiledocument) 
 * [Creating custom engines](#creating-custom-engines)
 * [JsFile engines](#jsfile-engines)
-* [Examples](http://jsfile.github.io/jsFile/)
+* [Examples](https://jsfile.github.io/jsFile/)
 * [Roadmap](#roadmap)
 * [Help](#help)
 
