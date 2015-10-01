@@ -1199,7 +1199,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    png: 'image/png',
 	    jpg: 'image/jpeg',
 	    jpeg: 'image/jpeg',
-	    gif: 'image/gif'
+	    gif: 'image/gif',
+	    svg: 'image/svg+xml',
+	    woff: 'application/font-woff'
 	};
 
 	/**
@@ -1735,7 +1737,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports['default'] = function (attribute) {
 	  var value = attribute && attribute.value || attribute;
 
-	  return [true, 'true', 'on', '1', 1].indexOf(value) >= 0;
+	  return [true, 'true', 'on', 'yes', '1', 1].indexOf(value) >= 0;
 	};
 
 	module.exports = exports['default'];
