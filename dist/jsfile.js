@@ -431,19 +431,22 @@ return /******/ (function(modules) { // webpackBootstrap
 	'use strict';
 
 	Object.defineProperty(exports, '__esModule', {
-	    value: true
+	  value: true
 	});
-	exports['default'] = {
-	    invalidFileType: 'Invalid file type. It must be an instance of File or Blob',
-	    invalidLoadFile: 'Can\'t load the file',
-	    invalidReadFile: 'Can\'t read the file',
-	    requiredTechnologies: 'Doesn\'t have required technologies',
-	    invalidParser: 'Doesn\'t have a parser',
-	    invalidReadArchive: 'Can\'t read the archive',
-	    notFoundMethodCreateDocument: 'Method `createDocument` not found',
-	    invalidWorker: 'Can\'t run the worker'
-	};
-	module.exports = exports['default'];
+	var invalidFileType = 'Invalid file type. It must be an instance of File or Blob';
+	exports.invalidFileType = invalidFileType;
+	var invalidLoadFile = 'Can\'t load the file';
+	exports.invalidLoadFile = invalidLoadFile;
+	var invalidReadFile = 'Can\'t read the file';
+	exports.invalidReadFile = invalidReadFile;
+	var requiredTechnologies = 'Doesn\'t have required technologies';
+	exports.requiredTechnologies = requiredTechnologies;
+	var invalidParser = 'Doesn\'t have a parser';
+	exports.invalidParser = invalidParser;
+	var invalidReadArchive = 'Can\'t read the archive';
+	exports.invalidReadArchive = invalidReadArchive;
+	var notFoundMethodCreateDocument = 'Method `createDocument` not found';
+	exports.notFoundMethodCreateDocument = notFoundMethodCreateDocument;
 
 /***/ },
 /* 6 */
@@ -1314,50 +1317,43 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _utilsErrors = __webpack_require__(5);
 
-	var _taskIndex = __webpack_require__(21);
+	var _jstask = __webpack_require__(21);
 
-	var _taskIndex2 = _interopRequireDefault(_taskIndex);
+	var _jstask2 = _interopRequireDefault(_jstask);
 
 	exports['default'] = function () {
-	    // istanbul ignore next
+	    var params = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 
-	    var _this = this;
-
-	    var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-
-	    return new Promise(function (resolve, reject) {
-	        var _config = _this.config;
+	    return new Promise((function (resolve, reject) {
+	        var _config = this.config;
 	        var config = _config === undefined ? {} : _config;
 
-	        if (!options.file) {
-	            reject(new Error(_utilsErrors.invalidReadFile));
-	            return;
+	        if (!params.file) {
+	            return reject(new Error(_utilsErrors.invalidReadFile));
 	        }
 
-	        new _taskIndex2['default'](config.workerPath + 'readFile.js', options, resolve, function (error) {
+	        _jstask2['default'].run(config.workerPath + 'readFile.js', params, function (response) {
+	            if (!response || response.error) {
+	                return reject(response && response.error || new Error(_utilsErrors.invalidReadFile));
+	            }
+
+	            resolve(response.result);
+	        }, function (error) {
 	            reject(error || new Error(_utilsErrors.invalidReadFile));
 	        });
-	    });
+	    }).bind(this));
 	};
 
 	module.exports = exports['default'];
 
 /***/ },
 /* 21 */
-/***/ function(module, exports, __webpack_require__) {
+/***/ function(module, exports) {
 
 	'use strict';
 
-	Object.defineProperty(exports, '__esModule', {
-	    value: true
-	});
-	// istanbul ignore next
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
-
-	var _utilsErrors = __webpack_require__(5);
-
 	var maxWorkersCount = typeof navigator !== 'undefined' && navigator.hardwareConcurrency || 4;
+	var invalidWorker = 'Can\'t run the worker';
 	var queue = [];
 	var createdWorkersCount = 0;
 
@@ -1369,67 +1365,56 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function processQueue() {
 	    if (createdWorkersCount < maxWorkersCount) {
-	        var _ret = (function () {
-	            var taskOptions = queue.shift();
+	        var taskOptions = queue.shift();
 
-	            if (!taskOptions) {
-	                return {
-	                    v: undefined
-	                };
+	        if (!taskOptions) {
+	            return;
+	        }
+
+	        createdWorkersCount++;
+	        var worker = new Worker(taskOptions.url);
+
+	        worker.onmessage = function (e) {
+	            if (typeof taskOptions.resolve === 'function') {
+	                taskOptions.resolve(e.data || {});
 	            }
 
-	            createdWorkersCount++;
-	            var worker = new Worker(taskOptions.url);
+	            taskOptions = null;
+	            done(this);
+	        };
 
-	            worker.onmessage = function (e) {
-	                var data = e.data || {};
+	        worker.onerror = function () {
+	            if (typeof taskOptions.reject === 'function') {
+	                taskOptions.reject(new Error(invalidWorker));
+	            }
 
-	                if (data.error) {
-	                    this.onerror(data.error);
-	                    taskOptions = null;
-	                    return;
-	                }
+	            taskOptions = null;
+	            done(this);
+	        };
 
-	                if (typeof taskOptions.resolve === 'function') {
-	                    taskOptions.resolve(data.result);
-	                }
-
-	                taskOptions = null;
-	                done(this);
-	            };
-
-	            worker.onerror = function () {
-	                if (typeof taskOptions.reject === 'function') {
-	                    taskOptions.reject(new Error(_utilsErrors.invalidWorker));
-	                }
-
-	                taskOptions = null;
-	                done(this);
-	            };
-
-	            worker.postMessage(taskOptions.data);
-	        })();
-
-	        // istanbul ignore next
-	        if (typeof _ret === 'object') return _ret.v;
+	        worker.postMessage(taskOptions.data);
 	    }
 	}
 
-	var Task = function Task(url, data, resolve, reject) {
-	    _classCallCheck(this, Task);
-
-	    queue.push({
-	        token: Date.now(),
-	        url: url,
-	        data: data,
-	        resolve: resolve,
-	        reject: reject
-	    });
-	    processQueue();
+	/**
+	 * @constructor
+	 * @param url {String}
+	 * @param data {Object}
+	 * @param resolve {Function}
+	 * @param reject {Function}
+	 */
+	module.exports = {
+	    run: function run(url, data, resolve, reject) {
+	        queue.push({
+	            token: Date.now(),
+	            url: url,
+	            data: data,
+	            resolve: resolve,
+	            reject: reject
+	        });
+	        processQueue();
+	    }
 	};
-
-	exports['default'] = Task;
-	module.exports = exports['default'];
 
 /***/ },
 /* 22 */
