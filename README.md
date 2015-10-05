@@ -19,6 +19,7 @@
 * [Creating custom engines](#creating-custom-engines)
 * [JsFile engines](#jsfile-engines)
 * [Examples](https://jsfile.github.io/jsFile/)
+* [Browser support](#browser-support)
 * [Roadmap](#roadmap)
 * [Help](#help)
 
@@ -255,6 +256,14 @@ $ npm run tests
 * [jsFile-image](https://github.com/jsFile/jsFile-image) works with many image formats
 * [jsFile-txt](https://github.com/jsFile/jsFile-txt) process the file as a simple text
 * [jsFile-epub](https://github.com/jsFile/jsFile-epub) for [EPUB](https://en.wikipedia.org/wiki/EPUB) format (.doc, etc.)
+
+
+
+
+## Browser Support
+| <img src="https://jsfile.github.io/jsFile/assets/images/chrome.png" width="48px" height="48px" alt="Chrome"> | <img src="https://jsfile.github.io/jsFile/assets/images/firefox.png" width="48px" height="48px" alt="Firefox"> | <img src="https://jsfile.github.io/jsFile/assets/images/ie.png" width="48px" height="48px" alt="Internet Explorer"> | <img src="https://jsfile.github.io/jsFile/assets/images/opera.png" width="48px" height="48px" alt="Opera"> | <img src="https://jsfile.github.io/jsFile/assets/images/safari.png" width="48px" height="48px" alt="Safari"> |
+|:---:|:---:|:---:|:---:|:---:|
+| 43+ ✔ | 41+ ✔ | 12+ ✔ | 32+ ✔ | 8+ ✘ |
 
 
 
