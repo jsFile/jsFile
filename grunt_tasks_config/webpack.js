@@ -1,3 +1,5 @@
+var webpack = require('webpack');
+
 module.exports = function (grunt) {
     return {
         app: {
@@ -22,6 +24,12 @@ module.exports = function (grunt) {
                     }
                 ]
             },
+
+            plugins: [
+                new webpack.DefinePlugin({
+                    webpackAppVersion: JSON.stringify(require('./../package.json').version)
+                })
+            ],
 
             stats: {
                 // Configure the console output

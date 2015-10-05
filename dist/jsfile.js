@@ -137,7 +137,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	    }], [{
 	        key: 'version',
-	        value: '0.0.1',
+	        value: ("0.1.9"),
 	        enumerable: true
 	    }, {
 	        key: 'Engine',

@@ -39,7 +39,7 @@ class JsFile {
 
     read = read
 
-    static version = '0.0.1'
+    static version = webpackAppVersion
 
     static Engine = Engine
 
