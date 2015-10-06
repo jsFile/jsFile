@@ -1,9 +1,9 @@
-import errors from './../../utils/errors';
+import {invalidFileType, notFoundMethodCreateDocument, invalidReadFile} from './../../utils/errors';
 
 export default function () {
     return new Promise(function (resolve, reject) {
         if (!this.isValid()) {
-            reject(new Error(errors.invalidFileType));
+            reject(new Error(invalidFileType));
             return;
         }
 
@@ -12,15 +12,15 @@ export default function () {
         }).then(
             function (result) {
                 if (typeof this.createDocument !== 'function') {
-                    reject(new Error(errors.notFoundMethodCreateDocument));
+                    reject(new Error(notFoundMethodCreateDocument));
                     return;
                 }
 
                 this.createDocument(result).then(resolve, (rejection) => {
-                    reject(rejection || new Error(errors.invalidReadFile));
+                    reject(rejection || new Error(invalidReadFile));
                 });
             }.bind(this),
-            (error) => reject(error || new Error(errors.invalidReadFile))
+            (error) => reject(error || new Error(invalidReadFile))
         );
     }.bind(this));
 }

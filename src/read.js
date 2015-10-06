@@ -1,4 +1,4 @@
-import errors from './utils/errors';
+import {invalidFileType, requiredTechnologies, invalidParser} from './utils/errors';
 import isSupported from './isSupported';
 
 /**
@@ -8,19 +8,19 @@ import isSupported from './isSupported';
 export default function () {
     return new Promise(function (resolve, reject) {
         if (!isSupported()) {
-            reject(new Error(errors.requiredTechnologies));
+            reject(new Error(requiredTechnologies));
             return;
         }
 
         const file = this.file;
         if (!file || !(file instanceof File || file instanceof Blob)) {
-            reject(new Error(errors.invalidFileType));
+            reject(new Error(invalidFileType));
             return;
         }
 
         let Engine = this.findEngine(file);
         if (!Engine) {
-            reject(new Error(errors.invalidFileType));
+            reject(new Error(invalidFileType));
             return;
         }
 
@@ -29,7 +29,7 @@ export default function () {
         if (typeof parser === 'function') {
             parser.call(engine).then(resolve, reject);
         } else {
-            reject(new Error(errors.invalidParser));
+            reject(new Error(invalidParser));
         }
     }.bind(this));
 }

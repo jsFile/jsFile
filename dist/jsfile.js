@@ -101,6 +101,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var documentEngines = [];
 	var mimeTypes = [];
+	var version =  true ? ("0.1.10") : '';
 
 	var JsFile = (function () {
 	    function JsFile(file, config) {
@@ -137,7 +138,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        }
 	    }], [{
 	        key: 'version',
-	        value: ("0.1.9"),
+	        value: version,
 	        enumerable: true
 	    }, {
 	        key: 'Engine',
@@ -379,8 +380,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _utilsErrors = __webpack_require__(5);
 
-	var _utilsErrors2 = _interopRequireDefault(_utilsErrors);
-
 	var _isSupported = __webpack_require__(6);
 
 	var _isSupported2 = _interopRequireDefault(_isSupported);
@@ -393,19 +392,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports['default'] = function () {
 	    return new Promise((function (resolve, reject) {
 	        if (!(0, _isSupported2['default'])()) {
-	            reject(new Error(_utilsErrors2['default'].requiredTechnologies));
+	            reject(new Error(_utilsErrors.requiredTechnologies));
 	            return;
 	        }
 
 	        var file = this.file;
 	        if (!file || !(file instanceof File || file instanceof Blob)) {
-	            reject(new Error(_utilsErrors2['default'].invalidFileType));
+	            reject(new Error(_utilsErrors.invalidFileType));
 	            return;
 	        }
 
 	        var Engine = this.findEngine(file);
 	        if (!Engine) {
-	            reject(new Error(_utilsErrors2['default'].invalidFileType));
+	            reject(new Error(_utilsErrors.invalidFileType));
 	            return;
 	        }
 
@@ -414,7 +413,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        if (typeof parser === 'function') {
 	            parser.call(engine).then(resolve, reject);
 	        } else {
-	            reject(new Error(_utilsErrors2['default'].invalidParser));
+	            reject(new Error(_utilsErrors.invalidParser));
 	        }
 	    }).bind(this));
 	};
@@ -984,6 +983,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	// istanbul ignore next
 
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
+
+	// istanbul ignore next
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
 	// istanbul ignore next
@@ -1044,7 +1047,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _utilsErrors = __webpack_require__(5);
 
-	var _utilsErrors2 = _interopRequireDefault(_utilsErrors);
+	var errors = _interopRequireWildcard(_utilsErrors);
 
 	var _utilsClone = __webpack_require__(34);
 
@@ -1147,7 +1150,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        enumerable: true
 	    }, {
 	        key: 'errors',
-	        value: (0, _utilsClone2['default'])(_utilsErrors2['default']),
+	        value: (0, _utilsClone2['default'])(errors),
 	        enumerable: true
 	    }, {
 	        key: 'colorsList',
@@ -1425,18 +1428,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, '__esModule', {
 	    value: true
 	});
-	// istanbul ignore next
-
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
 	var _utilsErrors = __webpack_require__(5);
-
-	var _utilsErrors2 = _interopRequireDefault(_utilsErrors);
 
 	exports['default'] = function () {
 	    return new Promise((function (resolve, reject) {
 	        if (!this.isValid()) {
-	            reject(new Error(_utilsErrors2['default'].invalidFileType));
+	            reject(new Error(_utilsErrors.invalidFileType));
 	            return;
 	        }
 
@@ -1444,15 +1442,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	            file: this.file
 	        }).then((function (result) {
 	            if (typeof this.createDocument !== 'function') {
-	                reject(new Error(_utilsErrors2['default'].notFoundMethodCreateDocument));
+	                reject(new Error(_utilsErrors.notFoundMethodCreateDocument));
 	                return;
 	            }
 
 	            this.createDocument(result).then(resolve, function (rejection) {
-	                reject(rejection || new Error(_utilsErrors2['default'].invalidReadFile));
+	                reject(rejection || new Error(_utilsErrors.invalidReadFile));
 	            });
 	        }).bind(this), function (error) {
-	            return reject(error || new Error(_utilsErrors2['default'].invalidReadFile));
+	            return reject(error || new Error(_utilsErrors.invalidReadFile));
 	        });
 	    }).bind(this));
 	};

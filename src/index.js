@@ -8,6 +8,7 @@ import isSupported from './isSupported';
 
 const documentEngines = [];
 const mimeTypes = [];
+let version = typeof webpackAppVersion !== 'undefined' ? webpackAppVersion : '';
 
 class JsFile {
     constructor (file, config) {
@@ -39,7 +40,7 @@ class JsFile {
 
     read = read
 
-    static version = webpackAppVersion
+    static version = version
 
     static Engine = Engine
 

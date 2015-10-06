@@ -11,7 +11,7 @@ import readArchive from './src/readArchive';
 import colorsList from './src/colorsList';
 import validateUrl from './src/validateUrl';
 import getMaxFontSize from './src/getMaxFontSize';
-import errors from './../utils/errors';
+import * as errors from './../utils/errors';
 import clone from './../utils/clone';
 import merge from './../utils/merge';
 

@@ -1,4 +1,4 @@
-import JsFile from './../../../src/index';
+import JsFile from './../../../dist/jsfile.js';
 const {Document} = JsFile;
 
 describe('Document', function () {
