@@ -265,7 +265,7 @@ $ npm run tests
 
 | <img src="https://jsfile.github.io/jsFile/images/icons/chrome.png" width="48px" height="48px" alt="Chrome"> | <img src="https://jsfile.github.io/jsFile/images/icons/firefox.png" width="48px" height="48px" alt="Firefox"> | <img src="https://jsfile.github.io/jsFile/images/icons/ie.png" width="48px" height="48px" alt="Internet Explorer"> | <img src="https://jsfile.github.io/jsFile/images/icons/opera.png" width="48px" height="48px" alt="Opera"> | <img src="https://jsfile.github.io/jsFile/images/icons/safari.png" width="48px" height="48px" alt="Safari"> |
 |:---:|:---:|:---:|:---:|:---:|
-| 43+ ✔ | 41+ ✔ | 12+ ✔ | 32+ ✔ | 8+ ✘ |
+| 43+ ✔ | 41+ ✔ | 12+ ✔ | 32+ ✔ | 8+ ✔ |
 
 
 
