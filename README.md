@@ -261,7 +261,7 @@ $ npm run tests
 * [DataView](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView)
 * [zip.js](https://github.com/gildas-lormeau/zip.js) (see `src/zip/` folder)
 
-| <img src="https://jsfile.github.io/jsFile/assets/images/chrome.png" width="48px" height="48px" alt="Chrome"> | <img src="https://jsfile.github.io/jsFile/assets/images/firefox.png" width="48px" height="48px" alt="Firefox"> | <img src="https://jsfile.github.io/jsFile/assets/images/ie.png" width="48px" height="48px" alt="Internet Explorer"> | <img src="https://jsfile.github.io/jsFile/assets/images/opera.png" width="48px" height="48px" alt="Opera"> | <img src="https://jsfile.github.io/jsFile/assets/images/safari.png" width="48px" height="48px" alt="Safari"> |
+| <img src="https://jsfile.github.io/jsFile/images/icons/chrome.png" width="48px" height="48px" alt="Chrome"> | <img src="https://jsfile.github.io/jsFile/images/icons/firefox.png" width="48px" height="48px" alt="Firefox"> | <img src="https://jsfile.github.io/jsFile/images/icons/ie.png" width="48px" height="48px" alt="Internet Explorer"> | <img src="https://jsfile.github.io/jsFile/images/icons/opera.png" width="48px" height="48px" alt="Opera"> | <img src="https://jsfile.github.io/jsFile/images/icons/safari.png" width="48px" height="48px" alt="Safari"> |
 |:---:|:---:|:---:|:---:|:---:|
 | 43+ ✔ | 41+ ✔ | 12+ ✔ | 32+ ✔ | 8+ ✘ |
 
