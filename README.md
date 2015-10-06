@@ -254,6 +254,7 @@ $ npm run tests
 ## Browser Support
 ### Dependencies
 * [Promise](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Promise)
+* [Web Workers](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers)
 * [File](https://developer.mozilla.org/en/docs/Web/API/File)
 * [Blob](https://developer.mozilla.org/en/docs/Web/API/Blob)
 * [FileReader](https://developer.mozilla.org/en/docs/Web/API/FileReader)
