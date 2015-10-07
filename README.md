@@ -296,8 +296,9 @@ $ npm run tests
 
 
 ## Help
-* [You may support the jsFile project by some donations](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=9R3AKPR466K84)
-
+You may support us:
+* [Bountysource](https://www.bountysource.com/teams/jsfile)
+* [Gratipay](https://gratipay.com/webschik/)
 
 
 
