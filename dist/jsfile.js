@@ -101,7 +101,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var documentEngines = [];
 	var mimeTypes = [];
-	var version =  true ? ("0.1.10") : '';
+	var version =  true ? ("0.1.11") : '';
 
 	var JsFile = (function () {
 	    function JsFile(file, config) {
@@ -508,8 +508,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	        var wordsCount = Number(attrs.wordsCount);
 
 	        this._data = (0, _utilsMerge2['default'])({
-	            name: '',
-	            language: '',
+	            meta: {
+	                name: '',
+	                language: ''
+	            },
 	            content: [],
 	            styles: []
 	        }, attrs);
@@ -524,24 +526,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	            wordsCount = 0;
 	        }
 
-	        this._data.zoom = zoom;
-	        this._data.wordsCount = wordsCount;
+	        this._data.meta.zoom = zoom;
+	        this._data.meta.wordsCount = wordsCount;
 	    }
 
 	    _createClass(Document, [{
 	        key: 'html',
 	        value: function html(options) {
 	            var html = new _srcHtmlIndex2['default'](options);
-
-	            return html.buildDocument(this._data.content, this._data.styles);
+	            return html.buildDocument(this._data);
 	        }
 	    }, {
 	        key: 'json',
 	        value: function json() {
-	            return {
-	                content: (0, _utilsMerge3['default'])(this._data.content),
-	                styles: (0, _utilsMerge3['default'])(this._data.styles)
-	            };
+	            return (0, _utilsMerge3['default'])(this._data);
 	        }
 	    }, {
 	        key: 'page',
@@ -580,7 +578,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     */
 	    language: {
 	        get: function get() {
-	            return this._data.language;
+	            return this._data.meta.language;
 	        }
 	    },
 
@@ -589,7 +587,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     */
 	    name: {
 	        get: function get() {
-	            return this._data.name;
+	            return this._data.meta.name;
 	        }
 	    },
 
@@ -598,7 +596,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     */
 	    wordsCount: {
 	        get: function get() {
-	            return this._data.wordsCount;
+	            return this._data.meta.wordsCount;
 	        }
 	    },
 
@@ -616,7 +614,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	     */
 	    zoom: {
 	        get: function get() {
-	            return this._data.zoom;
+	            return this._data.meta.zoom;
 	        }
 	    },
 
@@ -693,7 +691,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    _createClass(Html, [{
 	        key: 'buildDocument',
-	        value: function buildDocument(content, styles) {
+	        value: function buildDocument(_ref) {
+	            var content = _ref.content;
+	            var styles = _ref.styles;
+
 	            var doc = document.createDocumentFragment();
 
 	            if (!Array.isArray(content) || !Array.isArray(styles)) {

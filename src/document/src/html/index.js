@@ -18,7 +18,7 @@ class Html {
 
     buildElement = buildElement
 
-    buildDocument (content, styles) {
+    buildDocument ({content, styles}) {
         let doc = document.createDocumentFragment();
 
         if (!Array.isArray(content) || !Array.isArray(styles)) {

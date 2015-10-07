@@ -12,11 +12,21 @@ describe('Document', function () {
 
     describe('zoom', function () {
         it('should return number between 0 and 100. Default is 100', function () {
-            expect(new Document({zoom: 1}).zoom).to.equal(1);
-            expect(new Document({zoom: 1.333333333}).zoom).to.equal(1.33);
-            expect(new Document({zoom: 'sfsd'}).zoom).to.equal(100);
-            expect(new Document({zoom: 101}).zoom).to.equal(100);
-            expect(new Document({zoom: -2}).zoom).to.equal(100);
+            expect(new Document({
+                meta: {zoom: 1}
+            }).zoom).to.equal(1);
+            expect(new Document({
+                meta: {zoom: 1.333333333}
+            }).zoom).to.equal(1.33);
+            expect(new Document({
+                meta: {zoom: 'sfsd'}
+            }).zoom).to.equal(100);
+            expect(new Document({
+                meta: {zoom: 101}
+            }).zoom).to.equal(100);
+            expect(new Document({
+                meta: {zoom: -2}
+            }).zoom).to.equal(100);
             expect(new Document().zoom).to.equal(100);
         });
     });
@@ -43,25 +53,41 @@ describe('Document', function () {
 
     describe('language', function () {
         it('should return language of the document', function () {
-            expect(new Document({language: 'en'}).language).to.equal('en');
+            expect(new Document({
+                meta: {
+                    language: 'en'
+                }
+            }).language).to.equal('en');
             expect(new Document({}).language).to.equal('');
         });
     });
 
     describe('name', function () {
         it('should return name of the document', function () {
-            expect(new Document({name: 'test'}).name).to.equal('test');
+            expect(new Document({
+                meta: {
+                    name: 'test'
+                }
+            }).name).to.equal('test');
             expect(new Document({}).name).to.equal('');
         });
     });
 
     describe('wordsCount', function () {
         it('should return words count. 0 by default', function () {
-            expect(new Document({wordsCount: 100}).wordsCount).to.equal(100);
+            expect(new Document({
+                meta: {wordsCount: 100}
+            }).wordsCount).to.equal(100);
             expect(new Document().wordsCount).to.equal(0);
-            expect(new Document({wordsCount: 'fds'}).wordsCount).to.equal(0);
-            expect(new Document({wordsCount: '1'}).wordsCount).to.equal(1);
-            expect(new Document({wordsCount: -10}).wordsCount).to.equal(0);
+            expect(new Document({
+                meta: {wordsCount: 'fds'}
+            }).wordsCount).to.equal(0);
+            expect(new Document({
+                meta: {wordsCount: '1'}
+            }).wordsCount).to.equal(1);
+            expect(new Document({
+                meta: {wordsCount: -10}
+            }).wordsCount).to.equal(0);
         });
     });
 

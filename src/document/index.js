@@ -11,8 +11,10 @@ class Document {
         let wordsCount = Number(attrs.wordsCount);
 
         this._data = merge({
-            name: '',
-            language: '',
+            meta: {
+                name: '',
+                language: ''
+            },
             content: [],
             styles: []
         }, attrs);
@@ -27,24 +29,17 @@ class Document {
             wordsCount = 0;
         }
 
-        this._data.zoom = zoom;
-        this._data.wordsCount = wordsCount;
+        this._data.meta.zoom = zoom;
+        this._data.meta.wordsCount = wordsCount;
     }
 
     html (options) {
-        let html = new Html(options);
-
-        return html.buildDocument(
-            this._data.content,
-            this._data.styles
-        );
+        const html = new Html(options);
+        return html.buildDocument(this._data);
     }
 
     json () {
-        return {
-            content: clone(this._data.content),
-            styles: clone(this._data.styles)
-        };
+        return clone(this._data);
     }
 
     page (index) {
@@ -79,7 +74,7 @@ Object.defineProperties(Document.prototype, {
      */
     language: {
         get: function () {
-            return this._data.language;
+            return this._data.meta.language;
         }
     },
 
@@ -88,7 +83,7 @@ Object.defineProperties(Document.prototype, {
      */
     name: {
         get: function () {
-            return this._data.name;
+            return this._data.meta.name;
         }
     },
 
@@ -97,7 +92,7 @@ Object.defineProperties(Document.prototype, {
      */
     wordsCount: {
         get: function () {
-            return this._data.wordsCount;
+            return this._data.meta.wordsCount;
         }
     },
 
@@ -115,7 +110,7 @@ Object.defineProperties(Document.prototype, {
      */
     zoom: {
         get: function () {
-            return this._data.zoom;
+            return this._data.meta.zoom;
         }
     },
 
