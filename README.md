@@ -298,7 +298,7 @@ $ npm run tests
 ## Help
 You may support us:
 * [Bountysource](https://www.bountysource.com/teams/jsfile)
-* [Gratipay](https://gratipay.com/webschik/)
+* [Gratipay](https://gratipay.com/jsfile/)
 
 
 
