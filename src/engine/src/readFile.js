@@ -5,24 +5,21 @@
         var method = fileEntry.method || 'readAsText';
         var file = fileEntry.file;
         var args = [file];
-        var reader = new FileReader();
+        var reader = new FileReaderSync();
 
         if (encoding && method === 'readAsText') {
             args.push(encoding);
         }
 
-        reader.onload = function (e) {
+        try {
+            var result = reader[method].apply(reader, args);
             self.postMessage({
-                result: e.target.result
+                result: result
             });
-        };
-
-        reader.onerror = function (error) {
+        } catch (error) {
             self.postMessage({
                 error: error
             });
-        };
-
-        reader[method].apply(reader, args);
+        }
     };
 }());
