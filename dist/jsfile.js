@@ -101,7 +101,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var documentEngines = [];
 	var mimeTypes = [];
-	var version =  true ? ("0.1.11") : '';
+	var version =  true ? ("0.1.12") : '';
 
 	var JsFile = (function () {
 	    function JsFile(file, config) {
@@ -504,9 +504,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        _classCallCheck(this, Document);
 
-	        var zoom = Number(attrs.zoom);
-	        var wordsCount = Number(attrs.wordsCount);
-
 	        this._data = (0, _utilsMerge2['default'])({
 	            meta: {
 	                name: '',
@@ -515,6 +512,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	            content: [],
 	            styles: []
 	        }, attrs);
+
+	        var zoom = Number(this._data.meta.zoom);
+	        var wordsCount = Number(this._data.meta.wordsCount);
 
 	        if (isNaN(zoom) || zoom < 0 || zoom > 100) {
 	            zoom = 100;

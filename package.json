@@ -1,6 +1,6 @@
 {
   "name": "jsfile",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "description": "JavaScript library for working with files in browser",
   "main": "dist/jsfile.js",
   "scripts": {

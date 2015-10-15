@@ -23,6 +23,7 @@
  * [Dependencies](#dependencies) 
 * [Roadmap](#roadmap)
 * [Help](#help)
+* [Contribute](#contribute)
 
 
 ## Installation
@@ -299,6 +300,56 @@ $ npm run tests
 You may support us:
 * [Bountysource](https://www.bountysource.com/teams/jsfile)
 * [Gratipay](https://gratipay.com/jsfile/)
+
+
+
+
+## Contribute
+### Installing Dependencies
+#with-git
+* [Git](http://git-scm.com/): The [Github Guide to Installing Git](https://help.github.com/articles/set-up-git) is a good source of information
+* [Node.js](http://nodejs.org/)
+* [Grunt](http://gruntjs.com/)
+
+
+
+
+### Forking JsFile on Github
+To create a Github account, follow the instructions [here](https://github.com/signup/free). 
+Afterwards, go ahead and [fork](http://help.github.com/forking) the [main JsFile repository](https://github.com/jsFile/jsFile).
+
+
+
+
+### Building JsFile
+* [Install JsFile with Git](#with-git)
+* Follow the next steps:
+
+````js
+
+#Go to the JsFile directory:
+
+cd jsfile
+
+#Add the main JsFile repository as an upstream remote to your repository:
+
+git remote add upstream "https://github.com/jsFile/jsFile.git"
+
+#Install node.js dependencies:
+
+npm install
+
+#Build JsFile:
+
+grunt build
+````
+
+### Running unit tests
+
+````js
+npm run test
+````
+
 
 
 

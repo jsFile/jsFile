@@ -7,9 +7,6 @@ import clone from './../utils/merge';
  */
 class Document {
     constructor (attrs = {}) {
-        let zoom = Number(attrs.zoom);
-        let wordsCount = Number(attrs.wordsCount);
-
         this._data = merge({
             meta: {
                 name: '',
@@ -18,6 +15,9 @@ class Document {
             content: [],
             styles: []
         }, attrs);
+
+        let zoom = Number(this._data.meta.zoom);
+        let wordsCount = Number(this._data.meta.wordsCount);
 
         if (isNaN(zoom) || zoom < 0 || zoom > 100) {
             zoom = 100;
