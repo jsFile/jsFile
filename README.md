@@ -305,8 +305,21 @@ You may support us:
 
 
 ## Contribute
+### Guidelines
+#### Found an Issue?
+If you find a bug in the source code or a mistake in the documentation, you can help us by submitting an issue to our [GitHub Repository](https://github.com/jsFile/jsFile/issues). Even better you can submit a Pull Request with a fix.
+#### Want a Feature?
+You can request a new feature by submitting an issue to our [GitHub Repository](https://github.com/jsFile/jsFile/issues). 
+#### Code rules
+* All features or bug fixes must be tested by one or more specs.
+* All public API methods must be documented with [jsdoc](http://usejsdoc.org/) 
+* We use [ES6](https://github.com/lukehoban/es6features) (EcmaScript2015) in JsFile
+* See our [jscs](jscs.info) [configuration](https://github.com/jsFile/jsFile/blob/master/grunt_tasks_config/jscs.js) 
+
+
+
+
 ### Installing Dependencies
-#with-git
 * [Git](http://git-scm.com/): The [Github Guide to Installing Git](https://help.github.com/articles/set-up-git) is a good source of information
 * [Node.js](http://nodejs.org/)
 * [Grunt](http://gruntjs.com/)
@@ -325,10 +338,9 @@ Afterwards, go ahead and [fork](http://help.github.com/forking) the [main JsFile
 * [Install JsFile with Git](#with-git)
 * Follow the next steps:
 
-````js
+````shell
 
 #Go to the JsFile directory:
-
 cd jsfile
 
 #Add the main JsFile repository as an upstream remote to your repository:
