@@ -306,6 +306,8 @@ You may support us:
 
 ## Contribute
 ### Guidelines
+#### Code of conduct
+JsFile is an open source project. Please read our [code license](https://github.com/jsFile/jsFile/blob/master/LICENSE)
 #### Found an Issue?
 If you find a bug in the source code or a mistake in the documentation, you can help us by submitting an issue to our [GitHub Repository](https://github.com/jsFile/jsFile/issues). Even better you can submit a Pull Request with a fix.
 #### Want a Feature?
