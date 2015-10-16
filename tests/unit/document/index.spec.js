@@ -1,4 +1,4 @@
-import JsFile from './../../../dist/jsfile.js';
+import JsFile from './../../../src/index';
 const {Document} = JsFile;
 
 describe('Document', function () {
@@ -62,6 +62,26 @@ describe('Document', function () {
         });
     });
 
+    describe('elementPrototype', function () {
+        it('should return a prototype for document element', function () {
+            const el1 = Document.elementPrototype;
+            const el2 = Document.elementPrototype;
+
+            assert.notEqual(el1, el2, 'should return a new instance');
+            assert.deepEqual(el1, {
+                children: [],
+                style: {
+                    position: 'relative',
+                    boxSizing: 'border-box'
+                },
+                properties: {
+                    tagName: 'DIV',
+                    textContent: ''
+                }
+            });
+        });
+    });
+
     describe('name', function () {
         it('should return name of the document', function () {
             expect(new Document({
@@ -97,7 +117,8 @@ describe('Document', function () {
             const html = new Document({
                 content: [
                     {}
-                ]
+                ],
+                styles: []
             }).html();
             assert.equal(html.children.length, 2, 'content & styles');
         });
@@ -112,5 +133,16 @@ describe('Document', function () {
             }).json();
             expect(json.content.length).to.equal(1);
         });
+    });
+
+    describe('#page()', () => {
+        const page = {};
+        const doc = new Document({
+            content: [
+                {},
+                page
+            ]
+        });
+        assert.equal(doc.page(1), page);
     });
 });

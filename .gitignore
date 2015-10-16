@@ -29,6 +29,5 @@ node_modules
 .idea
 .git
 .DS_Store
-tests/files
 npm-debug.log
 tests/filesCache.js

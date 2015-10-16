@@ -31,8 +31,7 @@ export default {
                     const dataLength = dataView.getUint32(16, true);
                     const filesLength = dataView.getUint16(8, true);
                     if (dataLength < 0 || dataLength >= reader.size) {
-                        reject();
-                        return;
+                        return reject();
                     }
 
                     reader.readUint8Array(dataLength, reader.size - dataLength, (bytes) => {
@@ -54,8 +53,7 @@ export default {
                             });
 
                             if (data.view.getUint32(index) !== 0x504b0102) {
-                                reject(new Error(ERR_BAD_FORMAT));
-                                return;
+                                return reject(new Error(ERR_BAD_FORMAT));
                             }
 
                             readCommonHeader(entry, data, index + 6, true, onerror);

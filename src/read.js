@@ -8,20 +8,17 @@ import isSupported from './isSupported';
 export default function () {
     return new Promise(function (resolve, reject) {
         if (!isSupported()) {
-            reject(new Error(requiredTechnologies));
-            return;
+            return reject(new Error(requiredTechnologies));
         }
 
         const file = this.file;
         if (!file || !(file instanceof File || file instanceof Blob)) {
-            reject(new Error(invalidFileType));
-            return;
+            return reject(new Error(invalidFileType));
         }
 
         let Engine = this.findEngine(file);
         if (!Engine) {
-            reject(new Error(invalidFileType));
-            return;
+            return reject(new Error(invalidFileType));
         }
 
         const engine = new Engine(file, this.config);

@@ -53,6 +53,19 @@ class JsFile {
      * @returns {Engine}
      */
     static defineEngine = defineEngine
+
+    static removeEngine (Engine) {
+        if (!Engine) {
+            documentEngines.length = 0;
+        } else {
+            const index = documentEngines.indexOf(Engine);
+            if (index >= 0) {
+                documentEngines.splice(index, 1);
+            }
+        }
+
+        return this;
+    }
 }
 
 Object.defineProperties(JsFile, {

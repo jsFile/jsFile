@@ -236,4 +236,17 @@ describe('Engine', () => {
             }).catch(done);
         });
     });
+
+    describe('#getCharFromHex()', () => {
+        it('should get character by its hex code', () => {
+            assert.equal(Engine.getCharFromHex(77), 'w');
+            assert.equal(Engine.getCharFromHex('7B'), '{');
+        });
+    });
+
+    describe('#replaceSpaces()', () => {
+        it('should replace two and more spaces to double Unicode symbols', () => {
+            assert.equal(Engine.replaceSpaces('hello    world'), 'hello\u2000\u2000world');
+        });
+    });
 });

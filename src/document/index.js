@@ -7,14 +7,22 @@ import clone from './../utils/merge';
  */
 class Document {
     constructor (attrs = {}) {
-        this._data = merge({
-            meta: {
+        this._data = {
+            meta: merge({
                 name: '',
                 language: ''
-            },
+            }, attrs.meta),
             content: [],
             styles: []
-        }, attrs);
+        };
+
+        if (Array.isArray(attrs.content)) {
+            this._data.content = attrs.content;
+        }
+
+        if (Array.isArray(attrs.styles)) {
+            this._data.styles = attrs.styles;
+        }
 
         let zoom = Number(this._data.meta.zoom);
         let wordsCount = Number(this._data.meta.wordsCount);
@@ -43,7 +51,7 @@ class Document {
     }
 
     page (index) {
-        return this._data.content[index];
+        return clone(this._data.content[index]);
     }
 }
 

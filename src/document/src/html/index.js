@@ -18,7 +18,8 @@ class Html {
 
     buildElement = buildElement
 
-    buildDocument ({content, styles}) {
+    buildDocument (params = {}) {
+        const {content, styles} = params;
         let doc = document.createDocumentFragment();
 
         if (!Array.isArray(content) || !Array.isArray(styles)) {
@@ -30,7 +31,7 @@ class Html {
             let el = this.buildElement(page);
             el.classList.add(pageClassName);
 
-            if (page.properties && page.properties.pageNumber) {
+            if (page.properties && page.properties.pageNumber != null) {
                 buildPageNumber(el, page);
             }
 

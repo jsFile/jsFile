@@ -137,6 +137,20 @@ return /******/ (function(modules) { // webpackBootstrap
 	            return result;
 	        }
 	    }], [{
+	        key: 'removeEngine',
+	        value: function removeEngine(Engine) {
+	            if (!Engine) {
+	                documentEngines.length = 0;
+	            } else {
+	                var index = documentEngines.indexOf(Engine);
+	                if (index >= 0) {
+	                    documentEngines.splice(index, 1);
+	                }
+	            }
+
+	            return this;
+	        }
+	    }, {
 	        key: 'version',
 	        value: version,
 	        enumerable: true
@@ -392,20 +406,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports['default'] = function () {
 	    return new Promise((function (resolve, reject) {
 	        if (!(0, _isSupported2['default'])()) {
-	            reject(new Error(_utilsErrors.requiredTechnologies));
-	            return;
+	            return reject(new Error(_utilsErrors.requiredTechnologies));
 	        }
 
 	        var file = this.file;
 	        if (!file || !(file instanceof File || file instanceof Blob)) {
-	            reject(new Error(_utilsErrors.invalidFileType));
-	            return;
+	            return reject(new Error(_utilsErrors.invalidFileType));
 	        }
 
 	        var Engine = this.findEngine(file);
 	        if (!Engine) {
-	            reject(new Error(_utilsErrors.invalidFileType));
-	            return;
+	            return reject(new Error(_utilsErrors.invalidFileType));
 	        }
 
 	        var engine = new Engine(file, this.config);
@@ -504,14 +515,22 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	        _classCallCheck(this, Document);
 
-	        this._data = (0, _utilsMerge2['default'])({
-	            meta: {
+	        this._data = {
+	            meta: (0, _utilsMerge2['default'])({
 	                name: '',
 	                language: ''
-	            },
+	            }, attrs.meta),
 	            content: [],
 	            styles: []
-	        }, attrs);
+	        };
+
+	        if (Array.isArray(attrs.content)) {
+	            this._data.content = attrs.content;
+	        }
+
+	        if (Array.isArray(attrs.styles)) {
+	            this._data.styles = attrs.styles;
+	        }
 
 	        var zoom = Number(this._data.meta.zoom);
 	        var wordsCount = Number(this._data.meta.wordsCount);
@@ -544,7 +563,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, {
 	        key: 'page',
 	        value: function page(index) {
-	            return this._data.content[index];
+	            return (0, _utilsMerge3['default'])(this._data.content[index]);
 	        }
 	    }]);
 
@@ -691,9 +710,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	    _createClass(Html, [{
 	        key: 'buildDocument',
-	        value: function buildDocument(_ref) {
-	            var content = _ref.content;
-	            var styles = _ref.styles;
+	        value: function buildDocument() {
+	            var params = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+	            var content = params.content;
+	            var styles = params.styles;
 
 	            var doc = document.createDocumentFragment();
 
@@ -706,7 +726,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                var el = this.buildElement(page);
 	                el.classList.add(pageClassName);
 
-	                if (page.properties && page.properties.pageNumber) {
+	                if (page.properties && page.properties.pageNumber != null) {
 	                    (0, _srcBuildPageNumber2['default'])(el, page);
 	                }
 
@@ -774,9 +794,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var data = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
 
 	    var numberBlock = document.createElement('div');
-	    var _data$options = data.options;
-	    var header = _data$options.header;
-	    var pageNumber = _data$options.pageNumber;
+	    var _data$properties = data.properties;
+	    var header = _data$properties.header;
+	    var pageNumber = _data$properties.pageNumber;
+
+	    if (!header || pageNumber == null) {
+	        return el;
+	    }
 
 	    el.style.position = 'relative';
 	    numberBlock.style.position = 'absolute';
@@ -1858,8 +1882,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                    var dataLength = dataView.getUint32(16, true);
 	                    var filesLength = dataView.getUint16(8, true);
 	                    if (dataLength < 0 || dataLength >= reader.size) {
-	                        reject();
-	                        return;
+	                        return reject();
 	                    }
 
 	                    reader.readUint8Array(dataLength, reader.size - dataLength, function (bytes) {
@@ -1881,8 +1904,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	                            });
 
 	                            if (data.view.getUint32(index) !== 0x504b0102) {
-	                                reject(new Error(ERR_BAD_FORMAT));
-	                                return;
+	                                return reject(new Error(ERR_BAD_FORMAT));
 	                            }
 
 	                            readCommonHeader(entry, data, index + 6, true, onerror);

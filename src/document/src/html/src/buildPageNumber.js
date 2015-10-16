@@ -1,6 +1,10 @@
 export default function (el, data = {}) {
     let numberBlock = document.createElement('div');
-    let {header, pageNumber} = data.options;
+    let {header, pageNumber} = data.properties;
+
+    if (!header || pageNumber == null) {
+        return el;
+    }
 
     el.style.position = 'relative';
     numberBlock.style.position = 'absolute';

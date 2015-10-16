@@ -49,7 +49,12 @@ module.exports = function (config) {
                             auxiliaryCommentBefore: 'istanbul ignore next'
                         }
                     }
-                ]
+                ],
+                postLoaders: [{
+                    test: /\.js/,
+                    exclude: /(node_modules|bower_components|dist|tests)/,
+                    loader: 'istanbul-instrumenter'
+                }]
             }
         },
 
