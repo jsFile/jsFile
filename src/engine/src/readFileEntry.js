@@ -3,7 +3,7 @@ import task from 'jstask';
 
 export default function (params = {}) {
     return new Promise(function (resolve, reject) {
-        const {config = {}} = this;
+        const {config = {}} = this || {};
 
         if (!params.file) {
             return reject(new Error(invalidReadFile));

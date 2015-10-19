@@ -101,7 +101,9 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var documentEngines = [];
 	var mimeTypes = [];
-	var version =  true ? ("0.1.12") : '';
+	var version =  true ? ("0.1.13") : '';
+	(0, _libsPolyfillsObject2['default'])();
+	(0, _libsPolyfillsString2['default'])();
 
 	var JsFile = (function () {
 	    function JsFile(file, config) {
@@ -215,48 +217,50 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 1 */
 /***/ function(module, exports) {
 
-	/**
-	 * https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/merge
-	 */
 	'use strict';
 
 	Object.defineProperty(exports, '__esModule', {
 	    value: true
 	});
-	if (!Object.merge) {
-	    Object.defineProperty(Object, 'merge', {
-	        enumerable: false,
-	        configurable: true,
-	        writable: true,
-	        value: function value(target) {
-	            if (target === undefined || target === null) {
-	                throw new TypeError('Cannot convert first argument to object');
-	            }
 
-	            var to = Object(target);
-	            for (var i = 1; i < arguments.length; i++) {
-	                var nextSource = arguments[i];
-	                if (nextSource === undefined || nextSource === null) {
-	                    continue;
+	exports['default'] = function () {
+	    /**
+	     * https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Object/merge
+	     */
+	    if (!Object.merge) {
+	        Object.defineProperty(Object, 'merge', {
+	            enumerable: false,
+	            configurable: true,
+	            writable: true,
+	            value: function value(target) {
+	                if (target === undefined || target === null) {
+	                    throw new TypeError('Cannot convert first argument to object');
 	                }
 
-	                nextSource = Object(nextSource);
-	                var keysArray = Object.keys(Object(nextSource));
-	                for (var nextIndex = 0, len = keysArray.length; nextIndex < len; nextIndex++) {
-	                    var nextKey = keysArray[nextIndex];
-	                    var desc = Object.getOwnPropertyDescriptor(nextSource, nextKey);
-	                    if (desc !== undefined && desc.enumerable) {
-	                        to[nextKey] = nextSource[nextKey];
+	                var to = Object(target);
+	                for (var i = 1; i < arguments.length; i++) {
+	                    var nextSource = arguments[i];
+	                    if (nextSource === undefined || nextSource === null) {
+	                        continue;
+	                    }
+
+	                    nextSource = Object(nextSource);
+	                    var keysArray = Object.keys(Object(nextSource));
+	                    for (var nextIndex = 0, len = keysArray.length; nextIndex < len; nextIndex++) {
+	                        var nextKey = keysArray[nextIndex];
+	                        var desc = Object.getOwnPropertyDescriptor(nextSource, nextKey);
+	                        if (desc !== undefined && desc.enumerable) {
+	                            to[nextKey] = nextSource[nextKey];
+	                        }
 	                    }
 	                }
+
+	                return to;
 	            }
+	        });
+	    }
+	};
 
-	            return to;
-	        }
-	    });
-	}
-
-	exports['default'] = {};
 	module.exports = exports['default'];
 
 /***/ },
@@ -268,11 +272,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	Object.defineProperty(exports, "__esModule", {
 	    value: true
 	});
-	String.prototype.includes = String.prototype.includes || function () {
-	    return this.indexOf.apply(this, arguments) !== -1;
+
+	exports["default"] = function () {
+	    String.prototype.includes = String.prototype.includes || function () {
+	        return this.indexOf.apply(this, arguments) !== -1;
+	    };
 	};
 
-	exports["default"] = {};
 	module.exports = exports["default"];
 
 /***/ },
@@ -1042,19 +1048,15 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _srcNormalizeColorValue2 = _interopRequireDefault(_srcNormalizeColorValue);
 
-	var _srcNormalizeDate = __webpack_require__(25);
-
-	var _srcNormalizeDate2 = _interopRequireDefault(_srcNormalizeDate);
-
-	var _srcAttributeToBoolean = __webpack_require__(26);
+	var _srcAttributeToBoolean = __webpack_require__(25);
 
 	var _srcAttributeToBoolean2 = _interopRequireDefault(_srcAttributeToBoolean);
 
-	var _srcFormatPropertyName = __webpack_require__(27);
+	var _srcFormatPropertyName = __webpack_require__(26);
 
 	var _srcFormatPropertyName2 = _interopRequireDefault(_srcFormatPropertyName);
 
-	var _srcReadArchive = __webpack_require__(28);
+	var _srcReadArchive = __webpack_require__(27);
 
 	var _srcReadArchive2 = _interopRequireDefault(_srcReadArchive);
 
@@ -1062,11 +1064,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _srcColorsList2 = _interopRequireDefault(_srcColorsList);
 
-	var _srcValidateUrl = __webpack_require__(32);
+	var _srcValidateUrl = __webpack_require__(31);
 
 	var _srcValidateUrl2 = _interopRequireDefault(_srcValidateUrl);
 
-	var _srcGetMaxFontSize = __webpack_require__(33);
+	var _srcGetMaxFontSize = __webpack_require__(32);
 
 	var _srcGetMaxFontSize2 = _interopRequireDefault(_srcGetMaxFontSize);
 
@@ -1074,7 +1076,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var errors = _interopRequireWildcard(_utilsErrors);
 
-	var _utilsClone = __webpack_require__(34);
+	var _utilsClone = __webpack_require__(33);
 
 	var _utilsClone2 = _interopRequireDefault(_utilsClone);
 
@@ -1144,10 +1146,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, {
 	        key: 'normalizeColorValue',
 	        value: _srcNormalizeColorValue2['default'],
-	        enumerable: true
-	    }, {
-	        key: 'normalizeDate',
-	        value: _srcNormalizeDate2['default'],
 	        enumerable: true
 	    }, {
 	        key: 'attributeToBoolean',
@@ -1353,8 +1351,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	    var params = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
 
 	    return new Promise((function (resolve, reject) {
-	        var _config = this.config;
-	        var config = _config === undefined ? {} : _config;
+	        var _ref = this || {};
+
+	        var _ref$config = _ref.config;
+	        var config = _ref$config === undefined ? {} : _ref$config;
 
 	        if (!params.file) {
 	            return reject(new Error(_utilsErrors.invalidReadFile));
@@ -1459,16 +1459,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	exports['default'] = function () {
 	    return new Promise((function (resolve, reject) {
 	        if (!this.isValid()) {
-	            reject(new Error(_utilsErrors.invalidFileType));
-	            return;
+	            return reject(new Error(_utilsErrors.invalidFileType));
 	        }
 
 	        this.readFileEntry({
 	            file: this.file
 	        }).then((function (result) {
 	            if (typeof this.createDocument !== 'function') {
-	                reject(new Error(_utilsErrors.notFoundMethodCreateDocument));
-	                return;
+	                return reject(new Error(_utilsErrors.notFoundMethodCreateDocument));
 	            }
 
 	            this.createDocument(result).then(resolve, function (rejection) {
@@ -1698,39 +1696,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	/**
 	 *
-	 * @param str
-	 * @return {String} - dd.mm.yyy
-	 * @private
-	 */
-	'use strict';
-
-	Object.defineProperty(exports, '__esModule', {
-	    value: true
-	});
-
-	exports['default'] = function (str) {
-	    if (str) {
-	        // yyyy-mm-dd
-	        if (/^[0-9]{4}-(0[1-9]|1[0-2])-([0-2][0-9]|3[01])$/.test(str)) {
-	            /**
-	             * @description Transform to dd.mm.yyyy
-	             * @type {string}
-	             */
-	            return str.split('-').reverse().join('.');
-	        }
-	    }
-
-	    return '';
-	};
-
-	module.exports = exports['default'];
-
-/***/ },
-/* 26 */
-/***/ function(module, exports) {
-
-	/**
-	 *
 	 * @description Convert attribute value to boolean value
 	 * @param attribute
 	 * @return {Boolean}
@@ -1751,7 +1716,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 27 */
+/* 26 */
 /***/ function(module, exports) {
 
 	/**
@@ -1786,7 +1751,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 28 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1800,7 +1765,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _utilsErrors = __webpack_require__(5);
 
-	var _zipIndex = __webpack_require__(29);
+	var _zipIndex = __webpack_require__(28);
 
 	var _zipIndex2 = _interopRequireDefault(_zipIndex);
 
@@ -1834,7 +1799,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 29 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -1846,11 +1811,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
-	var _srcZip = __webpack_require__(30);
+	var _srcZip = __webpack_require__(29);
 
 	var _srcZip2 = _interopRequireDefault(_srcZip);
 
-	var _srcEntry = __webpack_require__(31);
+	var _srcEntry = __webpack_require__(30);
 
 	var _srcEntry2 = _interopRequireDefault(_srcEntry);
 
@@ -1947,7 +1912,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 30 */
+/* 29 */
 /***/ function(module, exports) {
 
 	/*
@@ -2743,7 +2708,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports["default"];
 
 /***/ },
-/* 31 */
+/* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -2759,7 +2724,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
-	var _zip = __webpack_require__(30);
+	var _zip = __webpack_require__(29);
 
 	var Entry = (function () {
 	    function Entry(options) {
@@ -2836,7 +2801,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports['default'];
 
 /***/ },
-/* 32 */
+/* 31 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -2853,7 +2818,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports["default"];
 
 /***/ },
-/* 33 */
+/* 32 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -2882,7 +2847,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = exports["default"];
 
 /***/ },
-/* 34 */
+/* 33 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';

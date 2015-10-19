@@ -4,7 +4,6 @@ import cropUnit from './src/cropUnit';
 import readFileEntry from './src/readFileEntry';
 import readSingleFile from './src/readSingleFile';
 import normalizeColorValue from './src/normalizeColorValue';
-import normalizeDate from './src/normalizeDate';
 import attributeToBoolean from './src/attributeToBoolean';
 import formatPropertyName from './src/formatPropertyName';
 import readArchive from './src/readArchive';
@@ -57,8 +56,6 @@ class Engine {
     static cropUnit = cropUnit
 
     static normalizeColorValue = normalizeColorValue
-
-    static normalizeDate = normalizeDate
 
     static attributeToBoolean = attributeToBoolean
 

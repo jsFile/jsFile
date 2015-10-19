@@ -3,8 +3,7 @@ import {invalidFileType, notFoundMethodCreateDocument, invalidReadFile} from './
 export default function () {
     return new Promise(function (resolve, reject) {
         if (!this.isValid()) {
-            reject(new Error(invalidFileType));
-            return;
+            return reject(new Error(invalidFileType));
         }
 
         this.readFileEntry({
@@ -12,8 +11,7 @@ export default function () {
         }).then(
             function (result) {
                 if (typeof this.createDocument !== 'function') {
-                    reject(new Error(notFoundMethodCreateDocument));
-                    return;
+                    return reject(new Error(notFoundMethodCreateDocument));
                 }
 
                 this.createDocument(result).then(resolve, (rejection) => {

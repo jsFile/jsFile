@@ -1,6 +1,8 @@
 import JsFile from './../../../src/index';
 import ZipEntry from './../../../src/zip/src/Entry';
+import readFileEntry from './../../../src/engine/src/readFileEntry';
 const {Engine} = JsFile;
+const {invalidReadFile, invalidFileType, notFoundMethodCreateDocument} = Engine.errors;
 
 class CustomEngine extends Engine {
     constructor (file) {
@@ -17,7 +19,9 @@ class CustomEngine extends Engine {
     }
 }
 
-describe('Engine', () => {
+describe('Engine', function () {
+    this.timeout(5000);
+
     let files = [];
     const filesCache = window.files;
 
@@ -52,6 +56,28 @@ describe('Engine', () => {
             assert.isFalse(Engine.validateUrl('example.com'));
             assert.isFalse(Engine.validateUrl('example...com'));
             assert.isFalse(Engine.validateUrl('h://example.com'));
+        });
+    });
+
+    describe('#validateFile()', () => {
+        it('should return false if can\'t find the file', () => {
+            const file = new Blob();
+            file.name = 'test';
+
+            assert.isFalse(Engine.validateFile());
+            assert.isFalse(Engine.validateFile(file));
+            assert.isFalse(Engine.validateFile({}, {}));
+            assert.isFalse(Engine.validateFile(file, {extension: 'txt'}));
+        });
+
+        it('should find the file by name or mime type', () => {
+            const file = new Blob([], {type: 'text/plain'});
+            file.name = 'test.txt';
+
+            assert.isTrue(Engine.validateFile(file, {mime: 'text/plain'}));
+            assert.isTrue(Engine.validateFile(file, {mime: ['text/plain']}));
+            assert.isTrue(Engine.validateFile(file, {extension: ['txt']}));
+            assert.isTrue(Engine.validateFile(file, {extension: 'txt'}));
         });
     });
 
@@ -205,10 +231,99 @@ describe('Engine', () => {
                 done();
             }).catch(done);
         });
+
+        it('should reject if `createDocument` method is not specified', (done) => {
+            let file;
+            files.some((f) => {
+                if (f.type.includes('plain')) {
+                    file = f;
+                    return true;
+                }
+            });
+
+            assert.isNotNull(file);
+
+            let engine = new CustomEngine(file, {
+                workerPath: '/base/dist/workers/'
+            });
+            engine.createDocument = null;
+            engine.readSingleFile().catch((error) => {
+                assert.instanceOf(error, Error);
+                assert.equal(error.message, notFoundMethodCreateDocument);
+                done();
+            });
+        });
+
+        it('should reject if file is invalid', (done) => {
+            let engine = new CustomEngine(new Blob(), {
+                workerPath: '/base/dist/workers/'
+            });
+            engine.isValid = () => false;
+            engine.readSingleFile().catch((error) => {
+                assert.instanceOf(error, Error);
+                assert.equal(error.message, invalidFileType);
+                done();
+            });
+        });
     });
 
     describe('#readArchive()', function () {
-        this.timeout(15000);
+        it('should reject if file is invalid', (done) => {
+            let engine = new CustomEngine(new Blob(), {
+                workerPath: '/base/dist/workers/'
+            });
+            engine.isValid = () => false;
+            engine.readArchive().catch((error) => {
+                assert.instanceOf(error, Error);
+                assert.equal(error.message, invalidFileType);
+                done();
+            });
+        });
+
+        it('should reject if createDocument fails. Base error', (done) => {
+            let file;
+            files.some((f) => {
+                if (!f.type.includes('plain')) {
+                    file = f;
+                    return true;
+                }
+            });
+
+            assert.isNotNull(file);
+
+            let engine = new CustomEngine(file, {
+                workerPath: '/base/dist/workers/'
+            });
+            engine.createDocument = () => Promise.reject();
+            engine.readArchive().catch((error) => {
+                assert.instanceOf(error, Error);
+                assert.equal(error.message, invalidFileType);
+                done();
+            });
+        });
+
+        it('should reject if createDocument fails. Error from createDocument', (done) => {
+            let file;
+            files.some((f) => {
+                if (!f.type.includes('plain')) {
+                    file = f;
+                    return true;
+                }
+            });
+
+            assert.isNotNull(file);
+
+            let engine = new CustomEngine(file, {
+                workerPath: '/base/dist/workers/'
+            });
+            engine.createDocument = () => Promise.reject(new Error('test-error'));
+            engine.readArchive().catch((error) => {
+                assert.instanceOf(error, Error);
+                assert.equal(error.message, 'test-error');
+                done();
+            });
+        });
+
         it('should read the content of file', (done) => {
             let file;
             files.some((f) => {
@@ -237,6 +352,16 @@ describe('Engine', () => {
         });
     });
 
+    describe('#readFileEntry()', () => {
+        it('should reject if file is not specified', (done) => {
+            readFileEntry().catch((error) => {
+                assert.instanceOf(error, Error);
+                assert.equal(error.message, invalidReadFile);
+                done();
+            });
+        });
+    });
+
     describe('#getCharFromHex()', () => {
         it('should get character by its hex code', () => {
             assert.equal(Engine.getCharFromHex(77), 'w');
@@ -247,6 +372,37 @@ describe('Engine', () => {
     describe('#replaceSpaces()', () => {
         it('should replace two and more spaces to double Unicode symbols', () => {
             assert.equal(Engine.replaceSpaces('hello    world'), 'hello\u2000\u2000world');
+        });
+    });
+
+    describe('#cropUnit()', () => {
+        it('should replace non-digit values', () => {
+            assert.strictEqual(Engine.cropUnit('1px'), 1);
+            assert.strictEqual(Engine.cropUnit('1'), 1);
+            assert.strictEqual(Engine.cropUnit('1 pt'), 1);
+            assert.strictEqual(Engine.cropUnit('12.16 pt'), 12.16);
+        });
+    });
+
+    describe('#normalizeColorValue()', () => {
+        it('should return hex value of the color', () => {
+            assert.strictEqual(Engine.normalizeColorValue(), '#000000');
+            assert.strictEqual(Engine.normalizeColorValue('black'), '#000000');
+            assert.strictEqual(Engine.normalizeColorValue('fafafa'), '#FAFAFA');
+            assert.strictEqual(Engine.normalizeColorValue('#cccccc'), '#CCCCCC');
+            assert.strictEqual(Engine.normalizeColorValue('springgreen'), '#00FF7F');
+        });
+    });
+
+    describe('#normalizeDataUri()', () => {
+        it('should normalize the dataUri value', () => {
+            assert.strictEqual(Engine.normalizeDataUri('data:;test'), 'data:;test');
+            assert.strictEqual(Engine.normalizeDataUri('data:;test', 'i.png'), 'data:image/png;test');
+            assert.strictEqual(Engine.normalizeDataUri('data:;test', 'i.jpg'), 'data:image/jpeg;test');
+            assert.strictEqual(Engine.normalizeDataUri('data:;test', 'i.jpeg'), 'data:image/jpeg;test');
+            assert.strictEqual(Engine.normalizeDataUri('data:;test', 'i.gif'), 'data:image/gif;test');
+            assert.strictEqual(Engine.normalizeDataUri('data:;test', 'i.svg'), 'data:image/svg+xml;test');
+            assert.strictEqual(Engine.normalizeDataUri('data:;test', 'f.woff'), 'data:application/font-woff;test');
         });
     });
 });

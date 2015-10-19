@@ -1,5 +1,5 @@
-import obj from './libs/polyfills/object';
-import str from './libs/polyfills/string';
+import setObject from './libs/polyfills/object';
+import setString from './libs/polyfills/string';
 import merge from './utils/merge';
 import read from './read';
 import Document from './document/index';
@@ -9,6 +9,8 @@ import isSupported from './isSupported';
 const documentEngines = [];
 const mimeTypes = [];
 let version = typeof webpackAppVersion !== 'undefined' ? webpackAppVersion : '';
+setObject();
+setString();
 
 class JsFile {
     constructor (file, config) {
