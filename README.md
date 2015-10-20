@@ -44,7 +44,7 @@ $ git clone git://github.com/jsFile/jsFile.git
 
 ### from latest version
 
-Also you can download [the latest release](https://github.com/jsFile/jsFile/releases/latest) of `jsFile` and include built files to your project.
+Also you can download [the latest release](https://github.com/jsFile/jsFile/tree/master/dist) of `jsFile` and include built files to your project.
 
 
 

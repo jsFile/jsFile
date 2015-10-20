@@ -1,12 +1,13 @@
-import {
+import * as zip from './zip';
+const {
     copy,
     readCommonHeader,
     getDataHelper,
     inflate,
-    ERR_BAD_FORMAT, 
+    ERR_BAD_FORMAT,
     ERR_READ_DATA,
     ERR_WRITE_DATA
-} from './zip';
+} = zip;
 
 class Entry {
     constructor (options) {
@@ -16,7 +17,7 @@ class Entry {
     testCrc32 (crc32) {
         const dataCrc32 = getDataHelper(4);
         dataCrc32.view.setUint32(0, crc32);
-        return this.crc32 === crc32;
+        return this.crc32 === dataCrc32.view.getUint32(0);
     }
 
     getData (options = {}) {

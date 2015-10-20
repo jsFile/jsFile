@@ -2722,9 +2722,23 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	// istanbul ignore next
 
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
+
+	// istanbul ignore next
+
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
 	var _zip = __webpack_require__(29);
+
+	var zip = _interopRequireWildcard(_zip);
+
+	var copy = zip.copy;
+	var readCommonHeader = zip.readCommonHeader;
+	var getDataHelper = zip.getDataHelper;
+	var inflate = zip.inflate;
+	var ERR_BAD_FORMAT = zip.ERR_BAD_FORMAT;
+	var ERR_READ_DATA = zip.ERR_READ_DATA;
+	var ERR_WRITE_DATA = zip.ERR_WRITE_DATA;
 
 	var Entry = (function () {
 	    function Entry(options) {
@@ -2736,9 +2750,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    _createClass(Entry, [{
 	        key: 'testCrc32',
 	        value: function testCrc32(crc32) {
-	            var dataCrc32 = (0, _zip.getDataHelper)(4);
+	            var dataCrc32 = getDataHelper(4);
 	            dataCrc32.view.setUint32(0, crc32);
-	            return this.crc32 === crc32;
+	            return this.crc32 === dataCrc32.view.getUint32(0);
 	        }
 	    }, {
 	        key: 'getData',
@@ -2749,23 +2763,23 @@ return /******/ (function(modules) { // webpackBootstrap
 	                var checkCrc32 = options.checkCrc32;
 
 	                function onReadError(err) {
-	                    reject(new Error(err || _zip.ERR_READ_DATA));
+	                    reject(new Error(err || ERR_READ_DATA));
 	                }
 
 	                onReadError = onReadError.bind(this);
 
 	                function onWriteError(err) {
-	                    reject(new Error(err || _zip.ERR_WRITE_DATA));
+	                    reject(new Error(err || ERR_WRITE_DATA));
 	                }
 
 	                this.reader.readUint8Array(this.offset, 30, (function (bytes) {
-	                    var data = (0, _zip.getDataHelper)(bytes.length, bytes);
+	                    var data = getDataHelper(bytes.length, bytes);
 	                    if (data.view.getUint32(0) !== 0x504b0304) {
-	                        reject(new Error(_zip.ERR_BAD_FORMAT));
+	                        reject(new Error(ERR_BAD_FORMAT));
 	                        return;
 	                    }
 
-	                    (0, _zip.readCommonHeader)(this, data, 4, false, onerror);
+	                    readCommonHeader(this, data, 4, false, onerror);
 	                    var dataOffset = this.offset + 30 + this.filenameLength + this.extraFieldLength;
 	                    var writer = this.writer;
 	                    var reader = this.reader;
@@ -2774,10 +2788,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	                    options.inflateSN++;
 	                    writer.init((function () {
-	                        var method = _zip.inflate;
+	                        var method = inflate;
 
 	                        if (this.compressionMethod === 0) {
-	                            method = _zip.copy;
+	                            method = copy;
 	                        }
 	                        method(worker, options.inflateSN, reader, writer, dataOffset, compressedSize, checkCrc32, (function (uncompressedSize, crc32) {
 	                            if (checkCrc32 && !this.testCrc32(crc32)) {
