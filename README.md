@@ -68,6 +68,16 @@ var JsFile = require('JsFile');
 import JsFile from 'JsFile';
 ````
 
+Include one or more engines for necessary file types. See all list of [engines](#jsfile-engines)
+````js
+import JsFile from 'JsFile';
+import JsFileDsv from 'jsfile-dsv'; //read .csv
+import JsFileOoxml from 'jsfile-ooxml'; //read .docx
+
+const jf = new JsFile(file, options);
+````
+
+
 
 
 ## API
