@@ -398,10 +398,15 @@ describe('Engine', function () {
         it('should normalize the dataUri value', () => {
             assert.strictEqual(Engine.normalizeDataUri('data:;test'), 'data:;test');
             assert.strictEqual(Engine.normalizeDataUri('data:;test', 'i.png'), 'data:image/png;test');
+            assert.strictEqual(Engine.normalizeDataUri('data:;test', 'i.ico'), 'data:image/x-icon;test');
             assert.strictEqual(Engine.normalizeDataUri('data:;test', 'i.jpg'), 'data:image/jpeg;test');
             assert.strictEqual(Engine.normalizeDataUri('data:;test', 'i.jpeg'), 'data:image/jpeg;test');
+            assert.strictEqual(Engine.normalizeDataUri('data:;test', 'i.pjpeg'), 'data:image/pjpeg;test');
             assert.strictEqual(Engine.normalizeDataUri('data:;test', 'i.gif'), 'data:image/gif;test');
             assert.strictEqual(Engine.normalizeDataUri('data:;test', 'i.svg'), 'data:image/svg+xml;test');
+            assert.strictEqual(Engine.normalizeDataUri('data:;test', 'i.tiff'), 'data:image/tiff;test');
+            assert.strictEqual(Engine.normalizeDataUri('data:;test', 'i.tif'), 'data:image/tiff;test');
+            assert.strictEqual(Engine.normalizeDataUri('data:;test', 'i.wbmp'), 'data:image/vnd.wap.wbmp;test');
             assert.strictEqual(Engine.normalizeDataUri('data:;test', 'f.woff'), 'data:application/font-woff;test');
         });
     });

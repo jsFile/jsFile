@@ -101,7 +101,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var documentEngines = [];
 	var mimeTypes = [];
-	var version =  true ? ("0.1.13") : '';
+	var version =  true ? ("0.1.14") : '';
 	(0, _libsPolyfillsObject2['default'])();
 	(0, _libsPolyfillsString2['default'])();
 
@@ -1228,9 +1228,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	    png: 'image/png',
 	    jpg: 'image/jpeg',
 	    jpeg: 'image/jpeg',
+	    pjpeg: 'image/pjpeg',
+	    ico: 'image/x-icon',
 	    gif: 'image/gif',
 	    svg: 'image/svg+xml',
-	    woff: 'application/font-woff'
+	    woff: 'application/font-woff',
+	    tif: 'image/tiff',
+	    tiff: 'image/tiff',
+	    wbmp: 'image/vnd.wap.wbmp'
 	};
 
 	/**
@@ -1241,7 +1246,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @private
 	 */
 
-	exports['default'] = function (dataUri, filename) {
+	exports['default'] = function (dataUri) {
+	    var filename = arguments.length <= 1 || arguments[1] === undefined ? '' : arguments[1];
+
 	    var extensionData = /[A-Za-z]+$/.exec(filename);
 	    var mime = extensionData && mimeTypesByExtension[extensionData[0].toLowerCase()];
 
