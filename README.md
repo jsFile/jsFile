@@ -153,6 +153,55 @@ Returns `String`.
 Replaces 2 and more spaces on `\u2000\u2000` value.
 
 ##### JsFile.Engine.test()
+Returns `Boolean`.
+If you develop a custom JsFile engine, you should override this method:
+````js
+static test (file) {
+    return Boolean(file && Engine.validateFile(file, files));
+}
+````
+`files` - Object with meta-information about supported formats:
+````js
+// Example for FB2 engine:
+const files = {
+    extension: ['fb2'],
+    mime: ['application/x-fictionbook+xml']
+};
+````
+
+##### JsFile.Engine.normalizeDataUri(dataUri, filename)
+Normalizes a `dataUri` string according to specified `filename`.
+````js
+const dataUri = 'data:;base64,....';
+const filename = 'test.png';
+JsFile.Engine.normalizeDataUri(dataUri, filename); //data:image/png;base64,...
+````
+
+##### JsFile.Engine.formatPropertyName(name, options)
+````js
+JsFile.Engine.formatPropertyName('namespace:prop'); //property
+JsFile.Engine.formatPropertyName('prop-name'); //propName
+JsFile.Engine.formatPropertyName('prop-name', {capitalize: true}); //PropName
+````
+
+##### JsFile.Engine.cropUnit(value)
+````js
+JsFile.Engine.cropUnit('18px'); //18
+````
+
+##### JsFile.Engine.normalizeColorValue(value)
+````js
+JsFile.Engine.normalizeColorValue('black'); //#000000
+JsFile.Engine.normalizeColorValue('darkgreen'); //#006400
+````
+
+##### JsFile.Engine.attributeToBoolean(value)
+````js
+JsFile.Engine.attributeToBoolean('yes'); //true
+JsFile.Engine.attributeToBoolean('on'); //true
+JsFile.Engine.attributeToBoolean('off'); //false
+JsFile.Engine.normalizeColorValue({value: 1}); //true
+````
 
 ##### JsFile.Engine.validateUrl()
 Returns `Boolean` value. It's utility method for URL validation. Might be helpful in development of custom engines 
@@ -161,6 +210,45 @@ let engine = new JsFile.defineEngine(...);
 engine.validateUrl(url); // true or false
 ````
 `url {String}`
+
+##### JsFile.Engine.merge()
+Deep merge of objects;
+
+````js
+const a = {
+    data: {
+        value: 1
+    },
+         
+    name: 'test'
+};
+
+const b = {
+    data: {
+        value: 0
+    }
+};
+
+JsFile.Engine.merge(a, b);
+/*
+It returns:
+{
+    data: {
+        value: 0
+    },
+ 
+    name: 'test'   
+}
+*/
+
+##### JsFile.Engine.clone()
+Returns deep clone of object;
+
+##### JsFile.Engine.errors
+{Object}. List of constants with error messages
+
+##### JsFile.Engine.prototype.isValid
+Method of `JsFile.Engine` instance. Return true if file from engine is supported.
 
 #### JsFile.Document
 ##### JsFile.Document.elementPrototype

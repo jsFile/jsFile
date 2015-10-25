@@ -9,7 +9,6 @@ import formatPropertyName from './src/formatPropertyName';
 import readArchive from './src/readArchive';
 import colorsList from './src/colorsList';
 import validateUrl from './src/validateUrl';
-import getMaxFontSize from './src/getMaxFontSize';
 import * as errors from './../utils/errors';
 import clone from './../utils/clone';
 import merge from './../utils/merge';
@@ -17,8 +16,6 @@ import merge from './../utils/merge';
 const halfTabAsSpaces = '\u2000\u2000';
 
 class Engine {
-    parser = 'readSingleFile'
-
     constructor (file, config) {
         this.file = file;
         this.fileName = (this.file && this.file.name) || '';
@@ -34,6 +31,8 @@ class Engine {
         return this.constructor.test(this.file);
     }
 
+    parser = 'readSingleFile'
+
     readFileEntry = readFileEntry
 
     readSingleFile = readSingleFile
@@ -47,6 +46,14 @@ class Engine {
 
     static replaceSpaces (str) {
         return String(str || '').replace(/\s{2,}/g, halfTabAsSpaces);
+    }
+
+    /**
+     *
+     * @returns {Boolean}
+     */
+    static test () {
+        return false;
     }
 
     static normalizeDataUri = normalizeDataUri
@@ -66,16 +73,6 @@ class Engine {
     static clone = clone
 
     static validateFile = validateFile
-
-    static getMaxFontSize = getMaxFontSize
-
-    /**
-     *
-     * @returns {Boolean}
-     */
-    static test () {
-        return false;
-    }
 
     static errors = clone(errors)
 

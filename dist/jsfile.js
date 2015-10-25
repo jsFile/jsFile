@@ -101,7 +101,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var documentEngines = [];
 	var mimeTypes = [];
-	var version =  true ? ("0.1.14") : '';
+	var version =  true ? ("0.1.15") : '';
 	(0, _libsPolyfillsObject2['default'])();
 	(0, _libsPolyfillsString2['default'])();
 
@@ -1068,15 +1068,11 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	var _srcValidateUrl2 = _interopRequireDefault(_srcValidateUrl);
 
-	var _srcGetMaxFontSize = __webpack_require__(32);
-
-	var _srcGetMaxFontSize2 = _interopRequireDefault(_srcGetMaxFontSize);
-
 	var _utilsErrors = __webpack_require__(5);
 
 	var errors = _interopRequireWildcard(_utilsErrors);
 
-	var _utilsClone = __webpack_require__(33);
+	var _utilsClone = __webpack_require__(32);
 
 	var _utilsClone2 = _interopRequireDefault(_utilsClone);
 
@@ -1121,13 +1117,13 @@ return /******/ (function(modules) { // webpackBootstrap
 	        value: function replaceSpaces(str) {
 	            return String(str || '').replace(/\s{2,}/g, halfTabAsSpaces);
 	        }
-	    }, {
-	        key: 'test',
 
 	        /**
 	         *
 	         * @returns {Boolean}
 	         */
+	    }, {
+	        key: 'test',
 	        value: function test() {
 	            return false;
 	        }
@@ -1166,10 +1162,6 @@ return /******/ (function(modules) { // webpackBootstrap
 	    }, {
 	        key: 'validateFile',
 	        value: _srcValidateFile2['default'],
-	        enumerable: true
-	    }, {
-	        key: 'getMaxFontSize',
-	        value: _srcGetMaxFontSize2['default'],
 	        enumerable: true
 	    }, {
 	        key: 'errors',
@@ -2840,35 +2832,6 @@ return /******/ (function(modules) { // webpackBootstrap
 
 /***/ },
 /* 32 */
-/***/ function(module, exports) {
-
-	"use strict";
-
-	Object.defineProperty(exports, "__esModule", {
-	    value: true
-	});
-
-	exports["default"] = function () {
-	    var element = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
-	    var children = element.children;
-	    var style = element.style;
-
-	    var i = children ? children.length : 0;
-	    var fontSize = style && style.fontSize && style.fontSize.value || 0;
-
-	    while (i--) {
-	        if (children[i].style.fontSize && children[i].style.fontSize.value > fontSize) {
-	            fontSize = children[i].style.fontSize.value;
-	        }
-	    }
-
-	    return fontSize;
-	};
-
-	module.exports = exports["default"];
-
-/***/ },
-/* 33 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';

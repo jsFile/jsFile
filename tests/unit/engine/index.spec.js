@@ -81,63 +81,6 @@ describe('Engine', function () {
         });
     });
 
-    describe('#getMaxFontSize()', () => {
-        assert.equal(Engine.getMaxFontSize(), 0);
-        assert.equal(Engine.getMaxFontSize({}), 0);
-        assert.equal(Engine.getMaxFontSize({
-            style: {
-                fontSize: {
-                    value: 10,
-                    unit: 'pt'
-                }
-            }
-        }), 10);
-        assert.equal(Engine.getMaxFontSize({
-            style: {
-                fontSize: {
-                    value: 10,
-                    unit: 'pt'
-                }
-            },
-            children: [
-                {
-                    style: {
-                        fontSize: {
-                            value: 12,
-                            unit: 'pt'
-                        }
-                    }
-                }
-            ]
-        }), 12);
-        assert.equal(Engine.getMaxFontSize({
-            style: {
-                fontSize: {
-                    value: 10,
-                    unit: 'pt'
-                }
-            },
-            children: [
-                {
-                    style: {
-                        fontSize: {
-                            value: 15,
-                            unit: 'pt'
-                        }
-                    }
-                },
-                {
-                    style: {
-                        fontSize: {
-                            value: 11,
-                            unit: 'pt'
-                        }
-                    }
-                }
-            ]
-        }), 15);
-    });
-
     describe('halfTabAsSpaces', () => {
         it('should 2 space symbols', () => {
             assert.equal(Engine.halfTabAsSpaces, '\u2000\u2000');
