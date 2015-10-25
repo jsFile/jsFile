@@ -8,9 +8,6 @@
 
 
 * [Installation](#installation)
- * [npm.js](#via-npm)
- * [Git](#with-git)
- * [Manual](#from-latest-version)
 * [Usage](#usage)
 * [API](#api)
  * [JsFile](#jsfile-1)
@@ -82,19 +79,24 @@ const jf = new JsFile(file, options);
 
 ## API
 ### JsFile
+#### JsFile.version
+Type: `String`
+
+It's a current version of library.
+
 #### JsFile.isSupported
 Type: `Boolean`
 
-It's shows that `jsFile` can work in current browser or not.
+It shows that `jsFile` can work in current browser or not.
 
 ````js
-JsFile.isSupported; //Boolean
+JsFile.isSupported;
 ````
 
 #### JsFile.mimeTypes
 Type: `Array`
 
-Contains list of supported mime-type in jDoc engines.
+Contains list of supported mime-type in jsFile engines.
 ````js
 JsFile.mimeTypes; //[...supported mime-types...]
 ````
@@ -105,9 +107,13 @@ You can create your own documents engine for `jsFile` and include it to the libr
 ````js
 JsFile.defineEngine(Engine);
 ````
-`Engine {Function}` - inherited `class` from [JsFile.Engine](#jsfileengine). 
+`Engine {Function}` - it's an inherited `class` from [JsFile.Engine](#jsfileengine). 
 It must have static property `mimeTypes` (array with supported mime types) and static method `test` 
-to test which type of file is supported
+to test which type of file is supported.
+
+#### JsFile.removeEngine(Engine)
+`Engine {Function}` - it's an inherited `class` from [JsFile.Engine](#jsfileengine).
+It removes specified `Engine` from defined engines. If `Engine` argument isn't defined it removes all defined engines.
 
 #### JsFile instance
 In the next examples I will use `JsFile` instance:
@@ -133,12 +139,21 @@ jf.read().then(
 `document` - object contains result of file reading. For more details see [JsFile.Document](#jsfiledocument)
 
 #### jf.findEngine()
-Returns [JsFile.Engine](#jsfileengine) or `null`. This method finds an engine that supports `file` type.
+Returns [JsFile.Engine](#jsfileengine) or `null`. This method finds an engine for `jf.file`.
 ````js
 jf.findEngine()
 ````
 
 #### JsFile.Engine
+##### JsFile.Engine.getCharFromHex(hex)
+Returns a character from `hex` value.
+
+##### JsFile.Engine.replaceSpaces(str)
+Returns `String`.
+Replaces 2 and more spaces on `\u2000\u2000` value.
+
+##### JsFile.Engine.test()
+
 ##### JsFile.Engine.validateUrl()
 Returns `Boolean` value. It's utility method for URL validation. Might be helpful in development of custom engines 
 ````js
