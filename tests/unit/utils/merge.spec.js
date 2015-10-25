@@ -17,7 +17,7 @@ describe('utils', () => {
                 data: {
                     f: 4
                 },
-                list: [1, 2, 3, {a: 1}, [5,6], new Date('2015'), /test/]
+                list: [1, 2, 3, {a: 1}, [5, 6], new Date('2015'), /test/]
             };
             const result = {
                 name: '',
@@ -27,7 +27,7 @@ describe('utils', () => {
                 data: {
                     f: 4
                 },
-                list: [1, 2, 3, {a: 1}, [5,6], new Date('2015'), /test/]
+                list: [1, 2, 3, {a: 1}, [5, 6], new Date('2015'), /test/]
             };
 
             assert.deepEqual(merge(obj1, obj2), result);
