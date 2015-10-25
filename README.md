@@ -254,7 +254,8 @@ Method of `JsFile.Engine` instance. Return true if file from engine is supported
 ##### JsFile.Document.elementPrototype
 Type: `Object`
 
-It's a static property that contains the base structure for each element of parsed document
+It is a static property that contains the base structure for each element of parsed document
+
 ````js
 {
     "children": [],
