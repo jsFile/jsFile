@@ -240,6 +240,7 @@ It returns:
     name: 'test'   
 }
 */
+````
 
 ##### JsFile.Engine.clone()
 Returns deep clone of object;
