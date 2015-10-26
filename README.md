@@ -17,7 +17,6 @@
 * [JsFile engines](#jsfile-engines)
 * [Examples](https://jsfile.github.io/jsFile/)
 * [Browser support](#browser-support)
- * [Dependencies](#dependencies) 
 * [Roadmap](#roadmap)
 * [Help](#help)
 * [Contribute](#contribute)
