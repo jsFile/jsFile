@@ -5,7 +5,7 @@
 [![bountysource](https://api.bountysource.com/badge/team?team_id=95267&style=bounties_posted)](https://www.bountysource.com/teams/jsfile)
 [![Coverage Status](https://coveralls.io/repos/jsFile/jsFile/badge.svg?branch=master&service=github)](https://coveralls.io/github/jsFile/jsFile?branch=master)
 
-> JavaScript library for working with files in browser. See here more info https://jsfile.github.io/jsFile/
+> JavaScript library for working with files in browser. See demo on https://jsfile.github.io/jsFile/
 
 
 
