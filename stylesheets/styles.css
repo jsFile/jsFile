@@ -128,7 +128,7 @@ html, body {
 }
 
 .mdl-demo section.section--center {
-    max-width: 860px;
+    max-width: 1024px;
 }
 
 .mdl-demo section > header {
@@ -178,4 +178,6 @@ html, body {
 iframe {
     width: 100%;
     min-height: 500px;
+    border: 1px solid #000000;
+    box-sizing: border-box;
 }
