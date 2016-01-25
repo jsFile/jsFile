@@ -432,6 +432,7 @@ You can request a new feature by submitting an issue to our [GitHub Repository](
 * All public API methods must be documented with [jsdoc](http://usejsdoc.org/) 
 * We use [ES6](https://github.com/lukehoban/es6features) (EcmaScript2015) in JsFile
 * See our [jscs](jscs.info) [configuration](https://github.com/jsFile/jsFile/blob/master/grunt_tasks_config/jscs.js)
+
 ### Create custom engine
 See the special [generator](https://github.com/jsFile/generator-jsfile-engine) for new jsFile engine . It will help you to start and provide required dependencies, structure and tools for jsFile engine.
 
