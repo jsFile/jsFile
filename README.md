@@ -14,15 +14,15 @@
 * [API](#api)
  * [JsFile](#jsfile-1)
   * [JsFile.Engine](#jsfileengine) 
-  * [JsFile.Document](#jsfiledocument) 
-* [Creating custom engines](#creating-custom-engines)
+  * [JsFile.Document](#jsfiledocument)
+* [Tests](#tests)
 * [JsFile engines](#jsfile-engines)
 * [Examples](https://jsfile.github.io/jsFile/)
 * [Browser support](#browser-support)
 * [Roadmap](#roadmap)
 * [Help](#help)
 * [Contribute](#contribute)
-
+ * [Create custom engine](#create-custom-engine)
 
 ## Installation
 ### via NPM
@@ -339,8 +339,7 @@ doc.isEmpty; // Boolean
 
 
 
-## Creating custom engines
-### Running provided unit tests
+# Tests
 
 * Clone JsFile sources [via Git](#with-git)
 * Install dependencies. Just run the next command in JsFile directory: 
@@ -432,7 +431,9 @@ You can request a new feature by submitting an issue to our [GitHub Repository](
 * All features or bug fixes must be tested by one or more specs.
 * All public API methods must be documented with [jsdoc](http://usejsdoc.org/) 
 * We use [ES6](https://github.com/lukehoban/es6features) (EcmaScript2015) in JsFile
-* See our [jscs](jscs.info) [configuration](https://github.com/jsFile/jsFile/blob/master/grunt_tasks_config/jscs.js) 
+* See our [jscs](jscs.info) [configuration](https://github.com/jsFile/jsFile/blob/master/grunt_tasks_config/jscs.js)
+### Create custom engine
+See the special [generator](https://github.com/jsFile/generator-jsfile-engine) for new jsFile engine . It will help you to start and provide required dependencies, structure and tools for jsFile engine.
 
 
 
