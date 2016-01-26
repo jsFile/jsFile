@@ -1,0 +1,26 @@
+{
+    "preset": "airbnb",
+    "disallowQuotedKeysInObjects": "allButReserved",
+    "validateIndentation": 4,
+    "validateQuoteMarks": "'",
+    "validateLineBreaks": null,
+    "disallowSpacesInFunctionDeclaration": null,
+    "disallowSpacesInFunctionExpression": null,
+    "disallowSpacesInAnonymousFunctionExpression": null,
+    "requireTrailingComma": null,
+    "requireLineFeedAtFileEnd": null,
+    "disallowImplicitTypeConversion": [
+        "numeric",
+        "boolean",
+        "string"
+    ],
+    "requireSpacesInsideObjectBrackets": null,
+    "requirePaddingNewLinesAfterBlocks": {
+        "allExcept": [
+            "inArrayExpressions"
+        ]
+    },
+    "maxErrors": -1,
+    "esnext": true,
+    "verbose": true
+}

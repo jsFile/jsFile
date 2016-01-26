@@ -1,4 +1,4 @@
-import * as zip from './zip';
+import zip from './zip';
 const {
     copy,
     readCommonHeader,
@@ -21,36 +21,33 @@ class Entry {
     }
 
     getData (options = {}) {
-        return new Promise(function (resolve, reject) {
-            let checkCrc32 = options.checkCrc32;
+        return new Promise((resolve) => {
+            const {checkCrc32} = options;
+            const onReadError = (err) => {
+                throw new Error(err || ERR_READ_DATA);
+            };
 
-            function onReadError(err) {
-                reject(new Error(err || ERR_READ_DATA));
-            }
-
-            onReadError = onReadError.bind(this);
-    
             function onWriteError(err) {
-                reject(new Error(err || ERR_WRITE_DATA));
+                throw new Error(err || ERR_WRITE_DATA);
             }
     
-            this.reader.readUint8Array(this.offset, 30, function (bytes) {
+            this.reader.readUint8Array(this.offset, 30, (bytes) => {
                 const data = getDataHelper(bytes.length, bytes);
                 if (data.view.getUint32(0) !== 0x504b0304) {
-                    reject(new Error(ERR_BAD_FORMAT));
-                    return;
+                    throw new Error(ERR_BAD_FORMAT);
                 }
                 
                 readCommonHeader(this, data, 4, false, onerror);
                 const dataOffset = this.offset + 30 + this.filenameLength + this.extraFieldLength;
                 let {writer, reader, worker, compressedSize} = this;
                 options.inflateSN++;
-                writer.init(function() {
+                writer.init(() => {
                     let method = inflate;
                     
                     if (this.compressionMethod === 0) {
                         method = copy;
                     }
+
                     method(
                         worker, 
                         options.inflateSN,
@@ -59,20 +56,20 @@ class Entry {
                         dataOffset, 
                         compressedSize, 
                         checkCrc32,
-                        function (uncompressedSize, crc32) {
+                        (uncompressedSize, crc32) => {
                             if (checkCrc32 && !this.testCrc32(crc32)) {
-                                reject(new Error(ERR_CRC));
+                                throw new Error(ERR_CRC);
                             } else {
                                 writer.getData((data) => resolve(data));
                             }
-                        }.bind(this), 
+                        },
                         null, 
                         onReadError, 
                         onWriteError
                     );
-                }.bind(this), onWriteError);
-            }.bind(this), onReadError);
-        }.bind(this));
+                }, onWriteError);
+            }, onReadError);
+        });
     };
 }
 

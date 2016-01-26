@@ -5,28 +5,27 @@ import isSupported from './isSupported';
  * @description Read the file
  * @returns {Promise}
  */
-export default function () {
-    return new Promise(function (resolve, reject) {
-        if (!isSupported()) {
-            return reject(new Error(requiredTechnologies));
-        }
+export default function read () {
+    if (!isSupported()) {
+        return Promise.reject(new Error(requiredTechnologies));
+    }
 
-        const file = this.file;
-        if (!file || !(file instanceof File || file instanceof Blob)) {
-            return reject(new Error(invalidFileType));
-        }
+    const {file} = this;
+    if (!file || !(file instanceof File || file instanceof Blob)) {
+        return Promise.reject(new Error(invalidFileType));
+    }
 
-        let Engine = this.findEngine(file);
-        if (!Engine) {
-            return reject(new Error(invalidFileType));
-        }
+    let Engine = this.findEngine(file);
+    if (!Engine) {
+        return Promise.reject(new Error(invalidFileType));
+    }
 
-        const engine = new Engine(file, this.config);
-        const parser = engine[engine.parser] || engine.parser;
-        if (typeof parser === 'function') {
-            parser.call(engine).then(resolve, reject);
-        } else {
-            reject(new Error(invalidParser));
-        }
-    }.bind(this));
+    const engine = new Engine(file, this.config);
+    const parser = engine[engine.parser] || engine.parser;
+
+    if (typeof parser === 'function') {
+        return parser.call(engine);
+    }
+
+    return Promise.reject(new Error(invalidParser));
 }

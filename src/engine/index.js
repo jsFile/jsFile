@@ -20,6 +20,7 @@ class Engine {
         this.file = file;
         this.fileName = (this.file && this.file.name) || '';
         this.config = {};
+
         for (let k in config) {
             if (config.hasOwnProperty(k)) {
                 this.config[k] = config[k];
@@ -30,14 +31,6 @@ class Engine {
     isValid () {
         return this.constructor.test(this.file);
     }
-
-    parser = 'readSingleFile'
-
-    readFileEntry = readFileEntry
-
-    readSingleFile = readSingleFile
-
-    readArchive = readArchive
 
     static getCharFromHex (hex) {
         const code = parseInt(hex, 16);
@@ -55,42 +48,82 @@ class Engine {
     static test () {
         return false;
     }
-
-    static normalizeDataUri = normalizeDataUri
-
-    static formatPropertyName = formatPropertyName
-
-    static cropUnit = cropUnit
-
-    static normalizeColorValue = normalizeColorValue
-
-    static attributeToBoolean = attributeToBoolean
-
-    static validateUrl = validateUrl
-
-    static merge = merge
-
-    static clone = clone
-
-    static validateFile = validateFile
-
-    static errors = clone(errors)
-
-    static colorsList = clone(colorsList)
-
-    static emDash = '—'
-
-    static enDash = '–'
-
-    static halfTabAsSpaces = halfTabAsSpaces
-
-    static tabAsSpaces = '\u2000\u2000\u2000\u2000'
-
-    static space = '\u2000'
-
-    static nbsp = '\u00A0'
-
-    static nbHyphen = '\u00D2'
 }
+
+Object.defineProperties(Engine.prototype, {
+    parser: {
+        writable: true,
+        value: 'readSingleFile'
+    },
+    readFileEntry: {
+        writable: true,
+        value: readFileEntry
+    },
+    readSingleFile: {
+        writable: true,
+        value: readSingleFile
+    },
+    readArchive: {
+        writable: true,
+        value: readArchive
+    }
+});
+
+Object.defineProperties(Engine, {
+    normalizeDataUri: {
+        value: normalizeDataUri
+    },
+    formatPropertyName: {
+        value: formatPropertyName
+    },
+    cropUnit: {
+        value: cropUnit
+    },
+    normalizeColorValue: {
+        value: normalizeColorValue
+    },
+    attributeToBoolean: {
+        value: attributeToBoolean
+    },
+    validateUrl: {
+        value: validateUrl
+    },
+    merge: {
+        value: merge
+    },
+    clone: {
+        value: clone
+    },
+    validateFile: {
+        value: validateFile
+    },
+    errors: {
+        value: clone(errors)
+    },
+    colorsList: {
+        value: clone(colorsList)
+    },
+    emDash: {
+        value: '—'
+    },
+    enDash: {
+        value: '–'
+    },
+    halfTabAsSpaces: {
+        value: halfTabAsSpaces
+    },
+    tabAsSpaces: {
+        value: '\u2000\u2000\u2000\u2000'
+    },
+    space: {
+        value: '\u2000'
+    },
+    nbsp:{
+        value: '\u00A0'
+    },
+    nbHyphen: {
+        value: '\u00D2'
+    }
+});
 
 export default Engine;

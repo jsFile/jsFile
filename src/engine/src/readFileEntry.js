@@ -2,13 +2,12 @@ import {invalidReadFile} from './../../utils/errors';
 import task from 'jstask';
 
 export default function (params = {}) {
-    return new Promise(function (resolve, reject) {
-        const {config = {}} = this || {};
+    if (!params.file) {
+        return Promise.reject(new Error(invalidReadFile));
+    }
 
-        if (!params.file) {
-            return reject(new Error(invalidReadFile));
-        }
-
+    const {config = {}} = this || {};
+    return new Promise((resolve, reject) => {
         task.run(`${config.workerPath}readFile.js`, params, (response) => {
             if (!response || response.error) {
                 return reject(response && response.error || new Error(invalidReadFile));
@@ -18,5 +17,5 @@ export default function (params = {}) {
         }, (error) => {
             reject(error || new Error(invalidReadFile));
         });
-    }.bind(this));
+    });
 }

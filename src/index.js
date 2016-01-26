@@ -1,6 +1,5 @@
 import setObjectPolyfill from './libs/polyfills/object';
 import setStringPolyfill from './libs/polyfills/string';
-import merge from './utils/merge';
 import read from './read';
 import Document from './document/index';
 import Engine from './engine/index';
@@ -15,6 +14,7 @@ setStringPolyfill();
 class JsFile {
     constructor (file, config) {
         this.file = file;
+        this.read = read;
         this.config = {
             workerPath: 'workers/'
         };
@@ -39,22 +39,6 @@ class JsFile {
 
         return result;
     }
-
-    read = read
-
-    static version = version
-
-    static Engine = Engine
-
-    static Document = Document
-
-    /**
-     *
-     * @param name
-     * @param mime
-     * @returns {Engine}
-     */
-    static defineEngine = defineEngine
 
     static removeEngine (Engine) {
         if (!Engine) {
@@ -82,6 +66,28 @@ Object.defineProperties(JsFile, {
          * @returns {boolean}
          */
         get: isSupported
+    },
+
+    version: {
+        value: version
+    },
+
+    Engine: {
+        value: Engine
+    },
+
+    Document: {
+        value: Document
+    },
+
+    defineEngine: {
+        /**
+         *
+         * @param name
+         * @param mime
+         * @returns {Engine}
+         */
+        value: defineEngine
     }
 });
 

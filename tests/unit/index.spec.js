@@ -1,5 +1,5 @@
 import JsFile from './../../src/index';
-const {Engine, Document} = JsFile;
+const {Engine} = JsFile;
 const {invalidFileType, invalidParser, requiredTechnologies} = Engine.errors;
 
 describe('JsFile', () => {
@@ -47,11 +47,13 @@ describe('JsFile', () => {
     describe('#removeEngine', () => {
         it('should remove all defined engines', () => {
             class CustomEngine extends Engine {
-                static mimeTypes = [];
                 static test () {
                     return true;
                 }
             }
+
+            CustomEngine.mimeTypes = [];
+
             JsFile.defineEngine(CustomEngine);
             JsFile.removeEngine();
             const jf = new JsFile({});
@@ -60,18 +62,20 @@ describe('JsFile', () => {
 
         it('should remove specified engine', () => {
             class Engine1 extends Engine {
-                static mimeTypes = [];
                 static test () {
                     return false;
                 }
             }
 
+            Engine1.mimeTypes = [];
+
             class Engine2 extends Engine {
-                static mimeTypes = [];
                 static test () {
                     return true;
                 }
             }
+
+            Engine2.mimeTypes = [];
 
             JsFile.defineEngine(Engine1);
             JsFile.defineEngine(Engine2);
@@ -84,44 +88,44 @@ describe('JsFile', () => {
     describe('#defineEngine()', () => {
         it('should be defined and return the engine if we set the name, formats array and engine as instace of JsFile.Engine', () => {
             class CustomEngine extends Engine {
-                static mimeTypes = [];
                 static test () {}
             }
 
+            CustomEngine.mimeTypes = [];
             assert.isNotNull(JsFile.defineEngine(CustomEngine));
         });
 
         it('should return null if all parameters are not valid', () => {
             class CustomEngine {
-                static mimeTypes = [];
             }
 
-            //jscs:disable
+            CustomEngine.mimeTypes = [];
+
             assert.isNull(JsFile.defineEngine(() => {}));
             assert.isNull(JsFile.defineEngine(() => {}));
             assert.isNull(JsFile.defineEngine({}));
             assert.isNull(JsFile.defineEngine([], {}));
             assert.isNull(JsFile.defineEngine([], () => {}));
-
-            //jscs:enable
             assert.isNull(JsFile.defineEngine(CustomEngine));
         });
     });
 
     describe('#findEngine()', () => {
         class Engine1 extends Engine {
-            static mimeTypes = [];
             static test () {
                 return false;
             }
         }
 
+        Engine1.mimeTypes = [];
+
         class Engine2 extends Engine {
-            static mimeTypes = [];
             static test () {
                 return true;
             }
         }
+
+        Engine2.mimeTypes = [];
 
         JsFile.defineEngine(Engine1);
         JsFile.defineEngine(Engine2);
@@ -170,12 +174,17 @@ describe('JsFile', () => {
         it('should reject the request when the parser is undefined', ((done) => {
             const file = new Blob();
             class Eng extends Engine {
-                parser = 'unknown'
-                static mimeTypes = [];
+                constructor () {
+                    super(...arguments);
+                    this.parser = 'unknown';
+                }
+
                 static test () {
                     return true;
                 }
             }
+
+            Eng.mimeTypes = [];
 
             JsFile.defineEngine(Eng);
             new JsFile(file).read().catch((error) => {
@@ -186,21 +195,40 @@ describe('JsFile', () => {
         }));
 
         it('should run the parser of specified engine', ((done) => {
+            let called = false;
             const file = new Blob();
+
             class Eng extends Engine {
-                parser = function () {
-                    done();
+                createDocument () {
+                    return Promise.resolve({});
+                }
+
+                parser () {
+                    called = true;
                     return Promise.resolve();
                 }
 
-                static mimeTypes = [];
                 static test () {
                     return true;
                 }
             }
 
-            JsFile.defineEngine(Eng);
-            new JsFile(file).read();
+            Eng.mimeTypes = [];
+
+            class FakeJsFile extends JsFile {
+                findEngine () {
+                    return Eng;
+                }
+            }
+
+            const engine = new FakeJsFile(file, {
+                workerPath: '/base/dist/workers/'
+            });
+
+            engine.read().then(() => {
+                assert.equal(called, true, 'Specified parser was not called');
+                done();
+            });
         }));
     });
 });

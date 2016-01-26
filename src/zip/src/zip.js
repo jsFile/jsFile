@@ -821,6 +821,7 @@ var zip = {
     decodeASCII,
     copy,
     inflate,
+    ERR_READ,
     ERR_BAD_FORMAT,
     ERR_READ_DATA,
     ERR_WRITE_DATA,

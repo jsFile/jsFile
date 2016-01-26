@@ -10,13 +10,11 @@ class Html {
         this.options = merge({
             pageClassName: 'jf-page'
         }, options);
+
+        this.setStyles = setStyles;
+        this.setProperties = setProperties;
+        this.buildElement = buildElement;
     }
-
-    setStyles = setStyles
-
-    setProperties = setProperties
-
-    buildElement = buildElement
 
     buildDocument (params = {}) {
         const {content, styles} = params;
@@ -41,6 +39,7 @@ class Html {
         doc.appendChild(buildStyle(styles, {
             pageClassName
         }));
+
         return doc;
     }
 }

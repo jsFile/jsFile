@@ -2,7 +2,7 @@ import JsFile from './../../../src/index';
 import ZipEntry from './../../../src/zip/src/Entry';
 import readFileEntry from './../../../src/engine/src/readFileEntry';
 const {Engine} = JsFile;
-const {invalidReadFile, invalidFileType, notFoundMethodCreateDocument} = Engine.errors;
+const {invalidReadFile, invalidReadArchive, invalidFileType, notFoundMethodCreateDocument} = Engine.errors;
 
 class CustomEngine extends Engine {
     constructor (file) {
@@ -240,7 +240,7 @@ describe('Engine', function () {
             engine.createDocument = () => Promise.reject();
             engine.readArchive().catch((error) => {
                 assert.instanceOf(error, Error);
-                assert.equal(error.message, invalidFileType);
+                assert.equal(error.message, invalidReadArchive);
                 done();
             });
         });

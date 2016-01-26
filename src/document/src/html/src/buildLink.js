@@ -10,9 +10,9 @@ export default function (data = {}) {
     this.setStyles(el, data);
     this.setProperties(el, data);
 
-    (data.children || []).forEach(function (child) {
+    (data.children || []).forEach((child) => {
         el.appendChild(this.buildElement(child));
-    }.bind(this));
+    });
 
     return el;
 }

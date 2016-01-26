@@ -10,6 +10,7 @@ const {
     getString,
     decodeUTF8,
     decodeASCII,
+    ERR_READ,
     ERR_BAD_FORMAT
 } = zip;
 

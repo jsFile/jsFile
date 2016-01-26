@@ -1,0 +1,23 @@
+{
+    "extends": "eslint:recommended",
+    "globals": {
+        "FileReaderSync": true,
+        "webpackAppVersion": true,
+        "expect": true,
+        "assert": true
+    },
+    "env": {
+        "browser": true,
+        "es6": true,
+        "commonjs": true,
+        "amd": true,
+        "mocha": true
+    },
+    "ecmaFeatures": {
+        "modules": true,
+        "classes": true
+    },
+    "rules": {
+
+    }
+}
