@@ -72,6 +72,8 @@ import JsFile from 'JsFile';
 import JsFileDsv from 'jsfile-dsv'; //read .csv
 import JsFileOoxml from 'jsfile-ooxml'; //read .docx
 
+JsFile.defineEngine(JsFileDsv);
+JsFile.defineEngine(JsFileOoxml);
 const jf = new JsFile(file, options);
 ````
 
