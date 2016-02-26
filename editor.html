@@ -36,6 +36,17 @@
     </style>
     <script>
         window.onload = function () {
+            //Use *.default for JsFile libraries (Babel transformation)
+            var JsFile = window.JsFile.default;
+            JsFile.defineEngine(JsFileDsv.default);
+            JsFile.defineEngine(JsFileEpub.default);
+            JsFile.defineEngine(JsFileFb.default);
+            JsFile.defineEngine(JsFileImage.default);
+            JsFile.defineEngine(JsFileOdf.default);
+            JsFile.defineEngine(JsFileOoxml.default);
+            JsFile.defineEngine(JsFileRtf.default);
+            JsFile.defineEngine(JsFileTxt.default);
+
             var $canvas = document.getElementById('canvas');
             document.getElementById('fileInput').addEventListener('change', function (e) {
                 $canvas.innerHTML = 'Loading...';
