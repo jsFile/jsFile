@@ -86,7 +86,7 @@ describe('JsFile', () => {
     });
 
     describe('#defineEngine()', () => {
-        it('should be defined and return the engine if we set the name, formats array and engine as instace of JsFile.Engine', () => {
+        it('should return the engine if we set the name, formats array and engine as instance of JsFile.Engine', () => {
             class CustomEngine extends Engine {
                 static test () {}
             }

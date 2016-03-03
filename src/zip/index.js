@@ -62,7 +62,13 @@ export default {
                             entry.directory = ((data.view.getUint8(index + 38) & 0x10) == 0x10);
                             entry.offset = data.view.getUint32(index + 42, true);
                             filename = getString(data.array.subarray(index + 46, index + 46 + entry.filenameLength));
-                            entry.filename = ((entry.bitFlag & 0x0800) === 0x0800) ? decodeUTF8(filename) : decodeASCII(filename);
+
+                            if ((entry.bitFlag & 0x0800) === 0x0800) {
+                                entry.filename = decodeUTF8(filename);
+                            } else {
+                                entry.filename = decodeASCII(filename);
+                            }
+
                             if (!entry.directory && entry.filename[entry.filename.length - 1] === '/') {
                                 entry.directory = true;
                             }
@@ -70,7 +76,13 @@ export default {
                             const val = index + 46 + entry.filenameLength + entry.extraFieldLength;
                             index = val + entry.commentLength;
                             comment = getString(data.array.subarray(val, index));
-                            entry.comment = ((entry.bitFlag & 0x0800) === 0x0800) ? decodeUTF8(comment) : decodeASCII(comment);
+
+                            if ((entry.bitFlag & 0x0800) === 0x0800) {
+                                entry.comment = decodeUTF8(comment);
+                            } else {
+                                entry.comment = decodeASCII(comment);
+                            }
+
                             entries.push(entry);
                             queue.push(entry.getData(dataOptions));
                         }
