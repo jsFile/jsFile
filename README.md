@@ -360,12 +360,12 @@ $ npm run tests
 * [jsFile-ooxml](https://github.com/jsFile/jsFile-ooxml) for [Office Open XML](https://en.wikipedia.org/wiki/Office_Open_XML) format (.docx files, etc.)
 * [jsFile-odf](https://github.com/jsFile/jsFile-odf) for [OpenDocument](https://en.wikipedia.org/wiki/OpenDocument) format (.odf files, etc.)
 * [jsFile-rtf](https://github.com/jsFile/jsFile-rtf) for [Rich Text Format](https://en.wikipedia.org/wiki/Rich_Text_Format)  (.rtf files)
-* [jsFile-wcbff](https://github.com/jsFile/jsFile-wcbff) for [Windows Compound File Binary](https://en.wikipedia.org/wiki/Compound_File_Binary_Format) format (.doc files, ect.)
+* [jsFile-wcbff](https://github.com/jsFile/jsFile-wcbff) for [Windows Compound File Binary](https://en.wikipedia.org/wiki/Compound_File_Binary_Format) format (.doc files, etc.)
 * [jsFile-fb](https://github.com/jsFile/jsFile-fb) for [FictionBook](https://en.wikipedia.org/wiki/FictionBook) format (.fb2 files, etc.)
 * [jsFile-dsv](https://github.com/jsFile/jsFile-dsv) for [Delimiter-separated values](https://en.wikipedia.org/wiki/FictionBook) format (.csv, .tsv files, etc.)
 * [jsFile-image](https://github.com/jsFile/jsFile-image) works with many image formats
 * [jsFile-txt](https://github.com/jsFile/jsFile-txt) process the file as a simple text
-* [jsFile-epub](https://github.com/jsFile/jsFile-epub) for [EPUB](https://en.wikipedia.org/wiki/EPUB) format (.epub, etc.)
+* [jsFile-epub](https://github.com/jsFile/jsFile-epub) for [EPUB](https://en.wikipedia.org/wiki/EPUB) format (.epub files, etc.)
 
 
 
