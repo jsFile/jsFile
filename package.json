@@ -54,6 +54,9 @@
     "webpack-dev-middleware": "^1.5.1",
     "webpack-dev-server": "^1.14.1"
   },
+  "peerDependencies": {
+    "chai": "2.x"
+  },
   "dependencies": {
     "jstask": "^1.0.2"
   }
