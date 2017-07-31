@@ -2,8 +2,6 @@
 [![Build Status](https://secure.travis-ci.org/jsFile/jsFile.png?branch=master)](https://travis-ci.org/jsFile/jsFile)
 [![npm](https://img.shields.io/npm/dm/jsfile.svg)](https://www.npmjs.com/package/jsfile)
 [![npm](https://img.shields.io/npm/l/jsfile.svg)](https://www.npmjs.com/package/jsfile)
-[![bountysource](https://api.bountysource.com/badge/team?team_id=95267&style=bounties_posted)](https://www.bountysource.com/teams/jsfile)
-[![Coverage Status](https://coveralls.io/repos/jsFile/jsFile/badge.svg?branch=master&service=github)](https://coveralls.io/github/jsFile/jsFile?branch=master)
 
 > JavaScript library for working with files in browser. See demo on https://jsfile.github.io/jsFile/
 
