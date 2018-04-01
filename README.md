@@ -6,8 +6,9 @@
 > JavaScript library for working with files in browser. See demo on https://jsfile.github.io/jsFile/
 
 
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 > ### :warning: This project is deprecated in favour of https://github.com/file2html/file2html
-
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 * [Installation](#installation)
 * [Usage](#usage)
