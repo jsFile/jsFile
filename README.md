@@ -383,8 +383,9 @@ $ npm run tests
 * [DataView](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView)
 * [zip.js](https://github.com/gildas-lormeau/zip.js) (see `src/zip/` folder)
 
-| <img src="https://jsfile.github.io/jsFile/images/icons/chrome.png" width="48px" height="48px" alt="Chrome"> | <img src="https://jsfile.github.io/jsFile/images/icons/firefox.png" width="48px" height="48px" alt="Firefox"> | <img src="https://jsfile.github.io/jsFile/images/icons/opera.png" width="48px" height="48px" alt="Opera"> | <img src="https://jsfile.github.io/jsFile/images/icons/safari.png" width="48px" height="48px" alt="Safari"> |
-|:---:|:---:|:---:|:---:|:---:|
+
+| Chrome | Firefox | Opera | Safari |
+| ------ | ------- | ----- | ------ |
 | 43+ ✔ | 41+ ✔ | 32✔ | 8+ ✔ |
 
 You can use polyfills for required API and try `JsFile` in older browsers.
